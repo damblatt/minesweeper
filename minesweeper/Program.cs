@@ -7,7 +7,10 @@ namespace minesweeper
         static void Main(string[] args)
         {
             Introduction.IntroMenu();
-            Game.MainLoop();
+
+            var game = new Game();
+            game.Start();
+
 
             Console.ReadLine();
         }

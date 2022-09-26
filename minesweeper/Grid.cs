@@ -12,7 +12,7 @@ namespace minesweeper
         // Fields
         private int rows;
         int columns;
-        public Field[,] _table;
+        private Field[,] _table;
         // Properties
         public int Rows
         {
@@ -92,11 +92,10 @@ namespace minesweeper
                 Console.WriteLine("");
             }
         }
-        public Array GetField()
+
+        internal Field GetField(Coordinate coordiante)
         {
-            // splits the user's input apart and stores it into an array
-            char[] input = Console.ReadLine().ToCharArray();
-            return input;
+            return _table[coordiante.X, coordiante.Y];
         }
     }
 }
