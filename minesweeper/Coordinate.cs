@@ -31,7 +31,7 @@ namespace minesweeper
                 return (false, null);
             }
             
-            
+            // detect wether the input starts with an integer or with a string
             var first = (int) input[0];
             char chr;
             string num;
@@ -50,7 +50,7 @@ namespace minesweeper
 
             int x = chr - 'a';
             int y = int.Parse(num) - 1;
-            if (y > gridSize || y < 8)
+            if (y > gridSize || y < 0)
             {
                 return (false, null);
             }
