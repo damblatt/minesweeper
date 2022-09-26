@@ -11,8 +11,8 @@ namespace minesweeper
     {
         // Fields
         private int rows;
-        private int columns;
-        private Field[,] _table;
+        int columns;
+        public Field[,] _table;
         // Properties
         public int Rows
         {
@@ -31,6 +31,8 @@ namespace minesweeper
             get { return rows; }
             set { columns = Rows; }
         }
+
+        public Field[,] Table { get; set; }
 
         // Constructor
         public Grid(int rows)
@@ -90,16 +92,10 @@ namespace minesweeper
                 Console.WriteLine("");
             }
         }
-        public static char GetField()
+        public Array GetField()
         {
             // splits the user's input apart and stores it into an array
             char[] input = Console.ReadLine().ToCharArray();
-            int i = 0;
-            foreach (char c in input)
-            {
-                Console.WriteLine(input[i]);
-                i++;
-            }
             return input;
         }
     }

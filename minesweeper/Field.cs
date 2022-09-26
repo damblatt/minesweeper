@@ -16,21 +16,23 @@ namespace minesweeper
             IsMine = isMine;
             IsUnfold = false;
         }
-
+        
         public string GetRepresentation()
         {
             // für programmierung 
-            if (IsMine)
-            {
-                return "o";
-            }
-            else if (!IsUnfold)
+            if (!IsUnfold)
             {
                 return "■";
             }
-
-            // todo andere möglochkeiten abdecken
-            return " ";
+            else if (IsUnfold && !IsMine)
+            {
+                return " ";
+            }
+            else if (IsUnfold && IsMine)
+            {
+                return "X";
+            }
+            return default;
         }
 
         public bool UnfoldAndCheckGameOver()

@@ -8,6 +8,7 @@ namespace minesweeper
         {
             Introduction.IntroMenu();
             Game.MainLoop();
+
             Console.ReadLine();
         }
     }
