@@ -13,7 +13,8 @@ namespace minesweeper
         {
             Console.WriteLine("Welcome to Minesweeper");
             Console.WriteLine("How many columns/rows should the playing field contain? Enter a natural number between 8 and 26.");
-            helper.ReadIntMax(8, 27);
+            //Grid grid = new Grid(helper.ReadIntMax(8, 27));
+            //grid.PrintGrid();
         }
     }
 }
