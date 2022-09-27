@@ -62,17 +62,18 @@ namespace minesweeper
                 }
             }
 
-            for (int i = 0; i < _table.GetLength(0); i++)
-            {
-                for (int j = 0; j < _table.GetLength(1); j++)
-                {
-                    var current = _table[i, j];
+            
+            //for (int i = 0; i < _table.GetLength(0); i++)
+            //{
+            //    for (int j = 0; j < _table.GetLength(1); j++)
+            //    {
+            //        var current = _table[i, j];
 
-                    var left = _table[i, j - 1];
+            //        var left = _table[i, j - 1];
 
-                    //current.SetFields() // zeile 129
-                }
-            }
+            //        //current.SetFields() // zeile 129
+            //    }
+            //}
 
 
         }
