@@ -14,6 +14,7 @@ namespace minesweeper
         /// <param name="min">Minimum value</param>
         /// <param name="instructionMessage">Message if the user's input is invalid</param>
         /// <returns></returns>
+
         public int ReadInt(int min, string instructionMessage = "")
         {
             string? input;
@@ -46,27 +47,6 @@ namespace minesweeper
             }
             return n;
         }
-        public void RevealOrMark(Grid _grid)
-        {
-            bool inputIsCorrect = false;
-            while (!inputIsCorrect)
-            {
-                Console.WriteLine("Do you want to reveal or mark this field? [r/m]");
-                string decision = Console.ReadLine();
-
-                if (decision == "r")
-                {
-                    _grid.RevealAndCheckFields();
-                    inputIsCorrect = true;
-
-                }
-                else if (decision == "m")
-                {
-                    // mark
-                    inputIsCorrect = true;
-                }
-            }
-        }
 
         public static Coordinate GetCoordinate(int gridSize)
         {
@@ -92,7 +72,7 @@ namespace minesweeper
             return isVerified = true;
         }
 
-        public void RevealOrMark()
+        public void RevealOrMark(Field field)
         {
             bool inputIsCorrect = false;
             while (!inputIsCorrect)
@@ -104,12 +84,13 @@ namespace minesweeper
                 {
                     // reveal();
                     inputIsCorrect = true;
-                    
+                    field.RevealField();
                 }
                 else if (decision == "m")
                 {
                     // mark
                     inputIsCorrect = true;
+                    field.MarkField();
                 }
             }
         }

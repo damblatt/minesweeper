@@ -22,7 +22,7 @@ namespace minesweeper
             bool isGameOver = false;
             while (!isGameOver)
             {
-                _grid.PrintGrid();
+                __grid.PrintGrid();
                 Console.WriteLine("Select a field you would like to REVEAL or MARK by entering it's coordinates. For example: 1A for the first field. ");
 
                 //code von Damian für Coordinates

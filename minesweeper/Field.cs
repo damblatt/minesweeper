@@ -25,6 +25,7 @@ namespace minesweeper
 
         public bool IsMine { get; }
         public bool IsRevealed { get; private set; }
+        public bool IsMarked { get; private set; }
 
 
         public Field(int index, bool isMine)
@@ -51,6 +52,28 @@ namespace minesweeper
             }
             return default;
         }
+
+        public string MarkField()
+        {
+            if (IsRevealed)
+            {
+                Console.WriteLine("This field is already revealed!");
+                return " ";
+            }
+            else if (!IsMarked)
+            {
+                IsMarked = true;
+                return "◎"; //●◈⋇⋕⨉⨁⨂⨷
+            }
+            else if (IsMarked)
+            {
+                IsMarked = false;
+                return "■";
+            }
+            return default;
+        }
+        
+
         public void RevealField()
         {
             if (IsMine)
@@ -89,8 +112,16 @@ namespace minesweeper
             }
             IsRevealed = true;
 
+            _top?._left?.UnfoldAndCheckGameOver();
+            _top?.UnfoldAndCheckGameOver();
+            _top?._right?.UnfoldAndCheckGameOver();
+
+            _left?.UnfoldAndCheckGameOver();
             _right?.UnfoldAndCheckGameOver();
-            _right?._top?.UnfoldAndCheckGameOver();
+
+            _bottom?._left?.UnfoldAndCheckGameOver();
+            _bottom?.UnfoldAndCheckGameOver();
+            _bottom?._right?.UnfoldAndCheckGameOver();
 
             return IsMine;
         }
