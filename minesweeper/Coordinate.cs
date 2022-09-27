@@ -56,7 +56,7 @@ namespace minesweeper
             }
             else
             {
-                var coordinate = new Coordinate(x, y);
+                var coordinate = new Coordinate(y, x);
                 return (true, coordinate);
             }
         }
