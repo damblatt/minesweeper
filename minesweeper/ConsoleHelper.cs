@@ -46,5 +46,31 @@ namespace minesweeper
             }
             return n;
         }
+
+
+        public static Coordinate GetCoordinate(int gridSize)
+        {
+            //// splits the user's input apart and stores it into an array
+            //char[] input = Console.ReadLine().ToCharArray();
+            //return input;
+            bool isValid;
+            Coordinate coordinate;
+            do
+            {
+                (isValid, coordinate) = Coordinate.TryCreateCoordinate(Console.ReadLine(), gridSize);
+            } while (!isValid);
+
+            return coordinate;
+        }
+
+        public bool VerifyCoordinate(int y, int x, int gridSize)
+        {
+            bool isVerified = false;
+            if (y < 0 || y > gridSize || x < 0 | x > gridSize)
+            {
+
+            }
+            return isVerified;
+        }
     }
 }

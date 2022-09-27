@@ -9,9 +9,11 @@ namespace minesweeper
 {
     internal class Grid
     {
+        private ConsoleHelper _helper;
+
         // Fields
         private int rows;
-        private int columns;
+        int columns;
         private Field[,] _table;
         // Properties
         public int Rows
@@ -31,6 +33,8 @@ namespace minesweeper
             get { return rows; }
             set { columns = Rows; }
         }
+
+        public Field[,] Table { get; set; }
 
         // Constructor
         public Grid(int rows)
@@ -90,25 +94,32 @@ namespace minesweeper
                 Console.WriteLine("");
             }
         }
-        public static char GetField()
+
+        internal Field GetField(Coordinate coordiante)
         {
-            // splits the user's input apart and stores it into an array
-            char[] input = Console.ReadLine().ToCharArray();
-            int i = 0;
-            foreach (char c in input)
-            {
-                Console.WriteLine(input[i]);
-                i++;
-            }
-            return input;
+            return _table[coordiante.Y, coordiante.X];
+        }
+
+        public void GetNeighbourStats(Coordinate coordinate)
+        {
+            //var coordinate = ConsoleHelper.GetCoordinate(_grid.Rows);
+            //var selectedField = _grid.GetField(coordinate);
+
+            coordinate.Y--;
+            coordinate.X--;
+            _helper.VerifyCoordinate(coordinate.Y, coordinate.X, Rows);
+            
+            var topLeft = new Coordinate(coordinate.Y, coordinate.X);
+            var top = new Coordinate(coordinate.Y, coordinate.X);
+            var topRight = new Coordinate(coordinate.Y, coordinate.X);
+
+            var left = new Coordinate(coordinate.Y, coordinate.X);
+            // actual field
+            var right = new Coordinate(coordinate.Y, coordinate.X);
+
+            var bottomLeft = new Coordinate(coordinate.Y, coordinate.X);
+            var bottom = new Coordinate(coordinate.Y, coordinate.X);
+            var bottomRight = new Coordinate(coordinate.Y, coordinate.X);
         }
     }
 }
-
-//foreach (char c in alpha)
-//{
-//    alphaSingle[i] = Convert.ToString(c);
-//    //Console.WriteLine(c);
-//    Console.WriteLine(alphaSingle[i]);
-//    i++;
-//}

@@ -16,10 +16,10 @@ namespace minesweeper
             IsMine = isMine;
             IsUnfold = false;
         }
-
+        
         public string GetRepresentation()
         {
-            // für programmierung
+            // für programmierung 
             if (!IsUnfold)
             {
                 return "■";
