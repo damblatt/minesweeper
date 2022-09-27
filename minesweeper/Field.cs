@@ -9,17 +9,28 @@ namespace minesweeper
 {
     internal class Field
     {
-        public bool IsMine { get; }
-        public bool IsRevealed { get; private set; }
+        private ConsoleHelper _helper;
 
         private Field? _right;
         private Field? _left;
         private Field? _top;
         private Field? _bottom;
 
-        public Field(bool isMine)
+        // Properties
+        public Field? Right => _right;
+        public Field? Left => _left;
+        public Field? Top => _top;
+        public Field? Bottom => _bottom;
+        public int Index { get; }
+
+        public bool IsMine { get; }
+        public bool IsRevealed { get; private set; }
+
+
+        public Field(int index, bool isMine)
         {
-                        IsMine = isMine;
+            Index = index;
+            IsMine = isMine;
             IsRevealed = false;
         }
         
@@ -40,6 +51,20 @@ namespace minesweeper
             }
             return default;
         }
+        public void RevealField()
+        {
+            if (IsMine)
+            {
+                GameOver.PrintGameOver();
+            }
+            else
+            {
+                if (!IsRevealed)
+                {
+                    IsRevealed = true;
+                }
+            }
+        }
 
         public bool IsFieldRevealed()
         {
@@ -47,13 +72,27 @@ namespace minesweeper
             return false;
         }
 
-        public void RevealField()
+        public int MineCounter()
         {
-            IsRevealed = IsFieldRevealed();
-            if (!IsRevealed)
+            if (IsMine)
             {
-                IsRevealed = true;
+                return 1;
             }
+            return 0;
+        }
+
+        public bool UnfoldAndCheckGameOver()
+        {
+            if (IsRevealed)
+            {
+                return false;
+            }
+            IsRevealed = true;
+
+            _right?.UnfoldAndCheckGameOver();
+            _right?._top?.UnfoldAndCheckGameOver();
+
+            return IsMine;
         }
     }
 }

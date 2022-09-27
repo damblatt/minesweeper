@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +13,7 @@ namespace minesweeper
     {
         private ConsoleHelper _helper;
         private Grid _grid;
+        public Coordinate _neighbour;
 
         // Fields
         private int rows;
@@ -50,12 +52,15 @@ namespace minesweeper
         public void CreateGrid()
         {
             _table = new Field[Rows, Columns];
+            var fields = new List<Field>();
+            int index = 0;
             for (int i = 0; i < _table.GetLength(0); i++)
             {
                 for (int j = 0; j < _table.GetLength(1); j++)
                 {
+                    index++;
                     var isBomb = Random.Shared.NextDouble() < 0.16; // random value
-                    _table[i, j] = new Field(isBomb);
+                    _table[i, j] = new Field(index , isBomb);
                 }
             }
         }
@@ -109,21 +114,25 @@ namespace minesweeper
             return _table[coordiante.Y, coordiante.X];
         }
 
-        public void GetNeighbourStats(Coordinate coordinate)
+        public int RevealAndCheckFields()
         {
-            List<Coordinate> _neighbourFields = new List<Coordinate> ();
             //var coordinate = ConsoleHelper.GetCoordinate(_grid.Rows);
             //var selectedField = _grid.GetField(coordinate);
             bool isVerified;
-            bool isGameOver;
+            int nearbyMines = 0;
+
+            var coordinate = ConsoleHelper.GetCoordinate(_grid.Rows);
+            var field = _grid.GetField(coordinate);
+            field.RevealField();
 
             // top left
             isVerified = _helper.VerifyCoordinate(coordinate.Y -1, coordinate.X -1, Rows);
             if (isVerified)
             {
                 var topLeftCoordinate = new Coordinate(coordinate.X -1, coordinate.Y -1);;
-                var field = _grid.GetField(topLeftCoordinate);
-                _neighbourFields.Add(topLeftCoordinate);
+                var topLeftField = _grid.GetField(topLeftCoordinate);
+                _neighbour = topLeftCoordinate;
+                nearbyMines += field.MineCounter();
                 GameOver.CheckGameOver(field, _grid);
             }
 
@@ -132,8 +141,9 @@ namespace minesweeper
             if (isVerified) 
             {
                 var topCoordinate = new Coordinate(coordinate.Y -1, coordinate.X);
-                var field = _grid.GetField(topCoordinate);
-                _neighbourFields.Add(topCoordinate);
+                var topField = _grid.GetField(topCoordinate);
+                ///
+                nearbyMines += field.MineCounter();
                 GameOver.CheckGameOver(field, _grid);
             }
 
@@ -142,8 +152,8 @@ namespace minesweeper
             if (isVerified)
             {
                 var topRightCoordinate = new Coordinate(coordinate.Y -1, coordinate.X +1);
-                var field = _grid.GetField(topRightCoordinate);
-                _neighbourFields.Add(topRightCoordinate);
+                var topRightField = _grid.GetField(topRightCoordinate);
+                nearbyMines += field.MineCounter();
                 GameOver.CheckGameOver(field, _grid);
             }
 
@@ -152,8 +162,8 @@ namespace minesweeper
             if (isVerified)
             {
                 var leftCoordinate = new Coordinate(coordinate.Y, coordinate.X -1);
-                var field = _grid.GetField(leftCoordinate);
-                _neighbourFields.Add(leftCoordinate);
+                var leftField = _grid.GetField(leftCoordinate);
+                nearbyMines += field.MineCounter();
                 GameOver.CheckGameOver(field, _grid);
             }
 
@@ -162,8 +172,8 @@ namespace minesweeper
             if (isVerified)
             {
                 var rightCoordinate = new Coordinate(coordinate.Y, coordinate.X +1);
-                var field = _grid.GetField(rightCoordinate);
-                _neighbourFields.Add(rightCoordinate);
+                var rightField = _grid.GetField(rightCoordinate);
+                nearbyMines += field.MineCounter();
                 GameOver.CheckGameOver(field, _grid);
             }
 
@@ -172,8 +182,8 @@ namespace minesweeper
             if (isVerified)
             {
                 var bottomLeftCoordinate = new Coordinate(coordinate.Y +1, coordinate.X -1);
-                var field = _grid.GetField(bottomLeftCoordinate);
-                _neighbourFields.Add(bottomLeftCoordinate);
+                var bottomLeftField = _grid.GetField(bottomLeftCoordinate);
+                nearbyMines += field.MineCounter();
                 GameOver.CheckGameOver(field, _grid);
             }
             
@@ -182,8 +192,8 @@ namespace minesweeper
             if (isVerified)
             {
                 var bottomCoordinate = new Coordinate(coordinate.Y +1, coordinate.X);
-                var field = _grid.GetField(bottomCoordinate);
-                _neighbourFields.Add(bottomCoordinate);
+                var bottomField = _grid.GetField(bottomCoordinate);
+                nearbyMines += field.MineCounter();
                 GameOver.CheckGameOver(field, _grid);
             }
             
@@ -192,10 +202,12 @@ namespace minesweeper
             if (isVerified)
             {
                 var bottomRightCoordinate = new Coordinate(coordinate.Y +1, coordinate.X -1);
-                var field = _grid.GetField(bottomRightCoordinate);
-                _neighbourFields.Add(bottomRightCoordinate);
+                var bottomRightField = _grid.GetField(bottomRightCoordinate);
+                nearbyMines += field.MineCounter();
                 GameOver.CheckGameOver(field, _grid);
             }
+
+            return nearbyMines;
         }
     }
 }
