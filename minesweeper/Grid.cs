@@ -52,22 +52,30 @@ namespace minesweeper
         public void CreateGrid()
         {
             _table = new Field[Rows, Columns];
-            var fields = new List<Field>();
             int index = 0;
             for (int i = 0; i < _table.GetLength(0); i++)
             {
                 for (int j = 0; j < _table.GetLength(1); j++)
                 {
-                    fields.Add(_table[i, j]);
                     var isBomb = Random.Shared.NextDouble() < 0.16; // random value
                     _table[i, j] = new Field(index , isBomb);
                 }
             }
 
-            for (int i = 0; i < fields.Count; i++)
-            {
-                var leftField = i - 1 >= 0 ? fields[i -1] : null;
-            }
+            
+            //for (int i = 0; i < _table.GetLength(0); i++)
+            //{
+            //    for (int j = 0; j < _table.GetLength(1); j++)
+            //    {
+            //        var current = _table[i, j];
+
+            //        var left = _table[i, j - 1];
+
+            //        //current.SetFields() // zeile 129
+            //    }
+            //}
+
+
         }
 
         public void PrintGrid()
@@ -119,6 +127,7 @@ namespace minesweeper
             return _table[coordiante.Y, coordiante.X];
         }
 
+        //
         public int RevealAndCheckFields()
         {
             //var coordinate = ConsoleHelper.GetCoordinate(_grid.Rows);

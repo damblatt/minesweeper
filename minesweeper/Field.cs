@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,6 +36,26 @@ namespace minesweeper
             IsRevealed = false;
         }
         
+        public void SetFields(Field? left, Field? top, Field? right, Field? bottom)
+        {
+            _left = left;
+            _top = top;
+            _right = right;
+            _bottom = bottom;
+        }
+
+        public int MinesArroundMe()
+        {
+            int count = 0;
+
+            if ((_left?.IsMine) ?? false)
+            {
+                count++;
+            }
+
+            return count;
+        }
+
         public string GetRepresentation()
         {
             // für programmierung 

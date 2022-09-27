@@ -47,23 +47,23 @@ namespace minesweeper
             }
             return n;
         }
-        public void RevealOrMark(Field[,] field)
+        public void RevealOrMark(Field field)
         {
             bool inputIsCorrect = false;
             while (!inputIsCorrect)
             {
-                Console.WriteLine("Do you want to reveal or mark this field? [r/m]");
+                Console.WriteLine("What do you want to do? Enter the corresponding letter");
+                Console.WriteLine("[r] Reveal the filed\n[m] Mark this field\n[u] Unmark");
                 string decision = Console.ReadLine();
 
                 if (decision == "r")
                 {
                     // reveal();
                     inputIsCorrect = true;
-
                 }
                 else if (decision == "m")
                 {
-                    // mark
+                    field.MarkField();
                     inputIsCorrect = true;
                 }
             }
