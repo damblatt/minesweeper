@@ -35,6 +35,7 @@ namespace minesweeper
                     GameOverFont.PrintGameOver();
                 }
             }
+            //Timer.timerStarter();
         }
     }
 }

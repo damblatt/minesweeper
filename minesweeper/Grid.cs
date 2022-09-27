@@ -93,6 +93,13 @@ namespace minesweeper
                 }
                 Console.WriteLine("");
             }
+            if (Timer.timerIsRunning)
+            {
+                Timer.printTimer();
+            } else
+            {
+                Timer.timerStarter();
+            }
         }
 
         internal Field GetField(Coordinate coordiante)

@@ -59,7 +59,6 @@ namespace minesweeper
             {
                 (isValid, coordinate) = Coordinate.TryCreateCoordinate(Console.ReadLine(), gridSize);
             } while (!isValid);
-
             return coordinate;
         }
 
