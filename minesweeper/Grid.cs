@@ -49,7 +49,7 @@ namespace minesweeper
         }
 
         // Methods
-        public Field[,] CreateGrid()
+        public void CreateGrid()
         {
             _table = new Field[Rows, Columns];
             var fields = new List<Field>();
@@ -68,6 +68,7 @@ namespace minesweeper
             {
                 var leftField = i - 1 >= 0 ? fields[i -1] : null;
             }
+            return _table;
         }
 
         public void PrintGrid()

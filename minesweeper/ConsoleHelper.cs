@@ -47,6 +47,27 @@ namespace minesweeper
             }
             return n;
         }
+        public void RevealOrMark(Field[,] field)
+        {
+            bool inputIsCorrect = false;
+            while (!inputIsCorrect)
+            {
+                Console.WriteLine("Do you want to reveal or mark this field? [r/m]");
+                string decision = Console.ReadLine();
+
+                if (decision == "r")
+                {
+                    // reveal();
+                    inputIsCorrect = true;
+
+                }
+                else if (decision == "m")
+                {
+                    // mark
+                    inputIsCorrect = true;
+                }
+            }
+        }
 
         public static Coordinate GetCoordinate(int gridSize)
         {
