@@ -25,8 +25,12 @@ namespace minesweeper
                 _grid.PrintGrid();
                 Console.WriteLine("Select a field you would like to REVEAL or MARK by entering it's coordinates. For example: 1A for the first field. ");
 
+                var coordinate = ConsoleHelper.GetCoordinate(_grid.Rows);
+                var selectedField = _grid.GetField(coordinate);
+                selectedField.IsFieldRevealed();
+
                 //code von Damian für Coordinates
-                _helper.RevealOrMark(_grid.Table);
+                _helper.RevealOrMark(selectedField);
             }
             
         }

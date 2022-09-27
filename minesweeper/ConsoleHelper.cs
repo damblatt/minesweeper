@@ -47,7 +47,7 @@ namespace minesweeper
             }
             return n;
         }
-        public void RevealOrMark(Field[,] field)
+        public void RevealOrMark(Field field)
         {
             bool inputIsCorrect = false;
             while (!inputIsCorrect)
