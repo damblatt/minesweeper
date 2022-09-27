@@ -4,14 +4,16 @@ namespace minesweeper
 {
     public class Coordinate
     {
-        public int Y { get; set; }
-        public int X { get; set; }
+        public int Y { get; }
+        public int X { get;  }
 
         public Coordinate(int y, int x)
         {
             Y = y;
             X = x;
         }
+
+        public Coordinate AddX() => new Coordinate(X + 1, Y);
 
         private static Regex _regex = new Regex("^(([a-z][1-9][1-9]?)|([1-9][1-9]?[a-z]))$");
 

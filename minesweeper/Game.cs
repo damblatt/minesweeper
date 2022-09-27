@@ -28,12 +28,7 @@ namespace minesweeper
                 var coordinate = ConsoleHelper.GetCoordinate(_grid.Rows);
                 var selectedField = _grid.GetField(coordinate);
 
-                isGameOver = selectedField.UnfoldAndCheckGameOver();
-                if (isGameOver)
-                {
-                    _grid.PrintGrid();
-                    GameOverFont.PrintGameOver();
-                }
+                GameOver.CheckGameOver(selectedField, _grid);
             }
         }
     }
