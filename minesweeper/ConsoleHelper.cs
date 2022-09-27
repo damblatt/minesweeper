@@ -71,28 +71,5 @@ namespace minesweeper
             }
             return isVerified = true;
         }
-
-        public void RevealOrMark(Field field)
-        {
-            bool inputIsCorrect = false;
-            while (!inputIsCorrect)
-            {
-                Console.WriteLine("Do you want to reveal or mark this field? [r/m]");
-                string decision = Console.ReadLine();
-
-                if (decision == "r")
-                {
-                    // reveal();
-                    inputIsCorrect = true;
-                    field.RevealField();
-                }
-                else if (decision == "m")
-                {
-                    // mark
-                    inputIsCorrect = true;
-                    field.MarkField();
-                }
-            }
-        }
     }
 }

@@ -58,12 +58,16 @@ namespace minesweeper
             {
                 for (int j = 0; j < _table.GetLength(1); j++)
                 {
-                    index++;
+                    fields.Add(_table[i, j]);
                     var isBomb = Random.Shared.NextDouble() < 0.16; // random value
                     _table[i, j] = new Field(index , isBomb);
                 }
             }
-            return _table;
+
+            for (int i = 0; i < fields.Count; i++)
+            {
+                var leftField = i - 1 >= 0 ? fields[i -1] : null;
+            }
         }
 
         public void PrintGrid()
