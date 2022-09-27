@@ -32,7 +32,7 @@ namespace minesweeper
                 if (isGameOver)
                 {
                     _grid.PrintGrid();
-                    Console.WriteLine("Oh noo, you stepped on a mine. GAME OVER!");
+                    GameOverFont.PrintGameOver();
                 }
             }
         }
