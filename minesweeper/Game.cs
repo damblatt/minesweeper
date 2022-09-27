@@ -27,10 +27,13 @@ namespace minesweeper
 
                 var coordinate = ConsoleHelper.GetCoordinate(_grid.Rows);
                 var selectedField = _grid.GetField(coordinate);
-                selectedField.IsFieldRevealed();
 
                 //code von Damian für Coordinates
                 _helper.RevealOrMark(selectedField);
+                
+                selectedField.IsFieldRevealed();
+                selectedField.RevealField();
+                selectedField.GetRepresentation();
             }
             
         }
