@@ -63,7 +63,7 @@ namespace minesweeper
             else if (!IsMarked)
             {
                 IsMarked = true;
-                return "◎"; //●◈⋇⋕⨉⨁⨂⨷
+                return "%";
             }
             else if (IsMarked)
             {
