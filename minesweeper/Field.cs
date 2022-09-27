@@ -89,16 +89,8 @@ namespace minesweeper
             }
             IsRevealed = true;
 
-            _top?._left?.UnfoldAndCheckGameOver();
-            _top?.UnfoldAndCheckGameOver();
-            _top?._right?.UnfoldAndCheckGameOver();
-
-            _left?.UnfoldAndCheckGameOver();
             _right?.UnfoldAndCheckGameOver();
-
-            _bottom?._left?.UnfoldAndCheckGameOver();
-            _bottom?.UnfoldAndCheckGameOver();
-            _bottom?._right?.UnfoldAndCheckGameOver();
+            _right?._top?.UnfoldAndCheckGameOver();
 
             return IsMine;
         }
