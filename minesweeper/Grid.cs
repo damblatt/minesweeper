@@ -9,6 +9,8 @@ namespace minesweeper
 {
     internal class Grid
     {
+        private ConsoleHelper _helper;
+
         // Fields
         private int rows;
         int columns;
@@ -95,15 +97,29 @@ namespace minesweeper
 
         internal Field GetField(Coordinate coordiante)
         {
-            return _table[coordiante.X, coordiante.Y];
+            return _table[coordiante.Y, coordiante.X];
+        }
+
+        public void GetNeighbourStats(Coordinate coordinate)
+        {
+            //var coordinate = ConsoleHelper.GetCoordinate(_grid.Rows);
+            //var selectedField = _grid.GetField(coordinate);
+
+            coordinate.Y--;
+            coordinate.X--;
+            _helper.VerifyCoordinate(coordinate.Y, coordinate.X, Rows);
+            
+            var topLeft = new Coordinate(coordinate.Y, coordinate.X);
+            var top = new Coordinate(coordinate.Y, coordinate.X);
+            var topRight = new Coordinate(coordinate.Y, coordinate.X);
+
+            var left = new Coordinate(coordinate.Y, coordinate.X);
+            // actual field
+            var right = new Coordinate(coordinate.Y, coordinate.X);
+
+            var bottomLeft = new Coordinate(coordinate.Y, coordinate.X);
+            var bottom = new Coordinate(coordinate.Y, coordinate.X);
+            var bottomRight = new Coordinate(coordinate.Y, coordinate.X);
         }
     }
 }
-
-//foreach (char c in alpha)
-//{
-//    alphaSingle[i] = Convert.ToString(c);
-//    //Console.WriteLine(c);
-//    Console.WriteLine(alphaSingle[i]);
-//    i++;
-//}
