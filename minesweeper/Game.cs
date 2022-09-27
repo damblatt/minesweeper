@@ -30,6 +30,7 @@ namespace minesweeper
 
                 GameOver.CheckGameOver(selectedField, _grid);
             }
+            //Timer.timerStarter();
         }
     }
 }
