@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,7 +10,7 @@ namespace minesweeper
     internal class Field
     {
         public bool IsMine { get; }
-        public bool IsUnfold { get; private set; }
+        public bool IsRevealed { get; private set; }
 
         private Field? _right;
         private Field? _left;
@@ -19,34 +20,49 @@ namespace minesweeper
         public Field(bool isMine)
         {
                         IsMine = isMine;
-            IsUnfold = false;
+            IsRevealed = false;
         }
         
         public string GetRepresentation()
         {
             // für programmierung 
-            if (!IsUnfold)
+            if (!IsRevealed)
             {
                 return "■";
             }
-            else if (IsUnfold && !IsMine)
+            else if (IsRevealed && !IsMine)
             {
                 return " ";
             }
-            else if (IsUnfold && IsMine)
+            else if (IsRevealed && IsMine)
             {
                 return "X";
             }
             return default;
         }
 
+        public bool IsFieldRevealed()
+        {
+            if (IsRevealed) { return true; }
+            return false;
+        }
+
+        public void RevealField()
+        {
+            IsRevealed = IsFieldRevealed();
+            if (!IsRevealed)
+            {
+                IsRevealed = true;
+            }
+        }
+
         public bool UnfoldAndCheckGameOver()
         {
-            if (IsUnfold)
+            if (IsRevealed)
             {
                 return false;
             }
-            IsUnfold = true;
+            IsRevealed = true;
 
             _right?.UnfoldAndCheckGameOver();
             _right?._top?.UnfoldAndCheckGameOver();
