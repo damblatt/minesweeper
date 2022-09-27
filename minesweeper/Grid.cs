@@ -118,96 +118,82 @@ namespace minesweeper
             bool isGameOver;
 
             // top left
-            coordinate.Y--;
-            coordinate.X--;
-            isVerified = _helper.VerifyCoordinate(coordinate.Y, coordinate.X, Rows);
+            isVerified = _helper.VerifyCoordinate(coordinate.Y -1, coordinate.X -1, Rows);
             if (isVerified)
             {
-                var topLeftCoordinate = new Coordinate(coordinate.Y, coordinate.X);
+                var topLeftCoordinate = new Coordinate(coordinate.X -1, coordinate.Y -1);;
                 var field = _grid.GetField(topLeftCoordinate);
                 _neighbourFields.Add(topLeftCoordinate);
                 GameOver.CheckGameOver(field, _grid);
             }
 
             // top
-            coordinate.X++;
-            isVerified = _helper.VerifyCoordinate(coordinate.Y, coordinate.X, Rows);
+            isVerified = _helper.VerifyCoordinate(coordinate.Y -1, coordinate.X, Rows);
             if (isVerified) 
             {
-                var topCoordinate = new Coordinate(coordinate.Y, coordinate.X);
+                var topCoordinate = new Coordinate(coordinate.Y -1, coordinate.X);
                 var field = _grid.GetField(topCoordinate);
                 _neighbourFields.Add(topCoordinate);
                 GameOver.CheckGameOver(field, _grid);
             }
 
             // top right
-            coordinate.X++;
-            isVerified = _helper.VerifyCoordinate(coordinate.Y, coordinate.X, Rows);
+            isVerified = _helper.VerifyCoordinate(coordinate.Y -1, coordinate.X +1, Rows);
             if (isVerified)
             {
-                var topRightCoordinate = new Coordinate(coordinate.Y, coordinate.X);
+                var topRightCoordinate = new Coordinate(coordinate.Y -1, coordinate.X +1);
                 var field = _grid.GetField(topRightCoordinate);
                 _neighbourFields.Add(topRightCoordinate);
                 GameOver.CheckGameOver(field, _grid);
             }
 
-            // right
-            coordinate.Y++;
-            isVerified = _helper.VerifyCoordinate(coordinate.Y, coordinate.X, Rows);
+            // left
+            isVerified = _helper.VerifyCoordinate(coordinate.Y, coordinate.X -1, Rows);
             if (isVerified)
             {
-                var rightCoordinate = new Coordinate(coordinate.Y, coordinate.X);
+                var leftCoordinate = new Coordinate(coordinate.Y, coordinate.X -1);
+                var field = _grid.GetField(leftCoordinate);
+                _neighbourFields.Add(leftCoordinate);
+                GameOver.CheckGameOver(field, _grid);
+            }
+
+            // right
+            isVerified = _helper.VerifyCoordinate(coordinate.Y, coordinate.X +1, Rows);
+            if (isVerified)
+            {
+                var rightCoordinate = new Coordinate(coordinate.Y, coordinate.X +1);
                 var field = _grid.GetField(rightCoordinate);
                 _neighbourFields.Add(rightCoordinate);
                 GameOver.CheckGameOver(field, _grid);
             }
 
-            // bottom right
-            coordinate.Y++;
-            isVerified = _helper.VerifyCoordinate(coordinate.Y, coordinate.X, Rows);
+            // bottom left
+            isVerified = _helper.VerifyCoordinate(coordinate.Y +1, coordinate.X -1, Rows);
             if (isVerified)
             {
-                var bottomRightCoordinate = new Coordinate(coordinate.Y, coordinate.X);
-                var field = _grid.GetField(bottomRightCoordinate);
-                _neighbourFields.Add(bottomRightCoordinate);
+                var bottomLeftCoordinate = new Coordinate(coordinate.Y +1, coordinate.X -1);
+                var field = _grid.GetField(bottomLeftCoordinate);
+                _neighbourFields.Add(bottomLeftCoordinate);
                 GameOver.CheckGameOver(field, _grid);
             }
             
             // bottom
-            coordinate.X--;
-            isVerified = _helper.VerifyCoordinate(coordinate.Y, coordinate.X, Rows);
+            isVerified = _helper.VerifyCoordinate(coordinate.Y +1, coordinate.X, Rows);
             if (isVerified)
             {
-                var bottomCoordinate = new Coordinate(coordinate.Y, coordinate.X);
+                var bottomCoordinate = new Coordinate(coordinate.Y +1, coordinate.X);
                 var field = _grid.GetField(bottomCoordinate);
                 _neighbourFields.Add(bottomCoordinate);
                 GameOver.CheckGameOver(field, _grid);
             }
             
-            // bottom left
-            coordinate.X--;
-            isVerified = _helper.VerifyCoordinate(coordinate.Y, coordinate.X, Rows);
+            // bottom right
+            isVerified = _helper.VerifyCoordinate(coordinate.Y +1, coordinate.X -1, Rows);
             if (isVerified)
             {
-                var bottomLeftCoordinate = new Coordinate(coordinate.Y, coordinate.X);
-                var field = _grid.GetField(bottomLeftCoordinate);
-                _neighbourFields.Add(bottomLeftCoordinate);
-                GameOver.CheckGameOver(field, _grid);
-                if (!field.IsMine)
-                {
-                    field.UnfoldAndCheckGameOver();
-                }
-            }
-
-            // left
-            coordinate.Y--;
-            coordinate.X -= 2;
-            isVerified = _helper.VerifyCoordinate(coordinate.Y, coordinate.X, Rows);
-            if (isVerified)
-            {
-                var leftCoordinate = new Coordinate(coordinate.Y, coordinate.X);
-                var field = _grid.GetField(leftCoordinate);
-                _neighbourFields.Add(leftCoordinate);
+                var bottomRightCoordinate = new Coordinate(coordinate.Y +1, coordinate.X -1);
+                var field = _grid.GetField(bottomRightCoordinate);
+                _neighbourFields.Add(bottomRightCoordinate);
                 GameOver.CheckGameOver(field, _grid);
             }
         }

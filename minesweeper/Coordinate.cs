@@ -5,7 +5,7 @@ namespace minesweeper
     public class Coordinate
     {
         public int Y { get; }
-        public int X { get;  }
+        public int X { get; }
 
         public Coordinate(int y, int x)
         {
@@ -13,7 +13,7 @@ namespace minesweeper
             X = x;
         }
 
-        public Coordinate AddX() => new Coordinate(X + 1, Y);
+        public Coordinate MinusXMinusY() => new Coordinate(X -1, Y-1);
 
         private static Regex _regex = new Regex("^(([a-z][1-9][1-9]?)|([1-9][1-9]?[a-z]))$");
 

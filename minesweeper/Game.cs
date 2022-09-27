@@ -27,6 +27,7 @@ namespace minesweeper
 
                 var coordinate = ConsoleHelper.GetCoordinate(_grid.Rows);
                 var selectedField = _grid.GetField(coordinate);
+                selectedField.IsFieldRevealed();
 
                 GameOver.CheckGameOver(selectedField, _grid);
             }
