@@ -55,19 +55,5 @@ namespace minesweeper
                 IsRevealed = true;
             }
         }
-
-        public bool UnfoldAndCheckGameOver()
-        {
-            if (IsRevealed)
-            {
-                return false;
-            }
-            IsRevealed = true;
-
-            _right?.UnfoldAndCheckGameOver();
-            _right?._top?.UnfoldAndCheckGameOver();
-
-            return IsMine;
-        }
     }
 }
