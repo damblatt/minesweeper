@@ -95,38 +95,38 @@ namespace minesweeper
         public Representation GetRepresentation()
         {
 
-            //if (!IsRevealed && IsMine)
-            //{
-            //    return Red("X");
-            //}
-            //if (!IsRevealed && !IsMarked)
-            //{
-            //    int minesNearby = MinesArroundMe();
-            //    return $"{minesNearby}";
-            //}
-            //else if (!IsRevealed && IsMarked)
-            //{
-            //    return Yellow("#");
-            //}
-            
-            //return default;
-
+            if (!IsRevealed && IsMine)
+            {
+                return Red("X");
+            }
             if (!IsRevealed && !IsMarked)
-            {
-                return "■";
-            }
-            else if (!IsRevealed && IsMarked)
-            {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                return Yellow("#");
-            }
-            else if (IsRevealed && !IsMine)
             {
                 int minesNearby = MinesArroundMe();
                 return $"{minesNearby}";
             }
-            
+            else if (!IsRevealed && IsMarked)
+            {
+                return Yellow("#");
+            }
+
             return default;
+
+            //if (!IsRevealed && !IsMarked)
+            //{
+            //    return "■";
+            //}
+            //else if (!IsRevealed && IsMarked)
+            //{
+            //    Console.ForegroundColor = ConsoleColor.Yellow;
+            //    return Yellow("#");
+            //}
+            //else if (IsRevealed && !IsMine)
+            //{
+            //    int minesNearby = MinesArroundMe();
+            //    return $"{minesNearby}";
+            //}
+
+            //return default;
         }
 
         public void MarkField()

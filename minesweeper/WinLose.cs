@@ -1,4 +1,5 @@
-﻿using System;
+﻿using minesweeper.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,11 +24,11 @@ namespace minesweeper
         }
         public static void PrintGameOver()
         {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Red;
             var content = File.ReadAllText("Resources/GameOverText.txt");
-            Console.WriteLine(content);
-            Console.ForegroundColor = ConsoleColor.White; // white != default
+
+            Console.Clear();
+            var representation = Representation.Red(content);
+            representation.Print();
             Timer.printTimerGameOver();
             return;
         }
