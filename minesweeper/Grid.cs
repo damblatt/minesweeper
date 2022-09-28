@@ -56,8 +56,8 @@ namespace minesweeper
             {
                 for (int j = 0; j < _table.GetLength(1); j++)
                 {
-                    var isBomb = Random.Shared.NextDouble() < 0.16; // random value
-                    _table[i, j] = new Field(index , isBomb);
+                    var isMine = Random.Shared.NextDouble() < 0.16; // random value
+                    _table[i, j] = new Field(index , isMine);
                 }
             }
 
