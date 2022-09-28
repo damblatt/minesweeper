@@ -49,7 +49,7 @@ namespace minesweeper
             {
                 for (int j = 0; j < _table.GetLength(1); j++)
                 {
-                    var isMine = Random.Shared.NextDouble() < 1; // random value // current mine rate = 50%
+                    var isMine = Random.Shared.NextDouble() < 0.16;
                     _table[i, j] = new Field(index , isMine);
                 }
             }

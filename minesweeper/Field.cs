@@ -149,9 +149,9 @@ namespace minesweeper
 
             if (IsMine)
             {
-             // Experimental
-             // field.GetRepresentation();
-                GameOver.PrintGameOver();
+                // Experimental
+                // field.GetRepresentation();
+                WinLose.WinOrLose = 1;
             }
         }
 
