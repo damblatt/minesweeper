@@ -88,12 +88,11 @@ namespace minesweeper
 
         public bool VerifyCoordinate(int y, int x, int gridSize)
         {
-            bool isVerified;
             if (y < 0 || y > gridSize || x < 0 | x > gridSize)
             {
-                return isVerified = false;
+                return false;
             }
-            return isVerified = true;
+            return true;
         }
     }
 }
