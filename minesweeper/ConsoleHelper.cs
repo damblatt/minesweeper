@@ -58,7 +58,6 @@ namespace minesweeper
 
                 if (decision == "r")
                 {
-                    field.IsFieldRevealed();
                     field.RevealField();
                     field.GetRepresentation();
                     inputIsCorrect = true;

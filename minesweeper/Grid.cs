@@ -11,7 +11,7 @@ namespace minesweeper
 {
     internal class Grid
     {
-        private ConsoleHelper _helper;
+        private ConsoleHelper _helper = new ConsoleHelper();
         public Coordinate _neighbour;
 
         // Fields
@@ -56,12 +56,12 @@ namespace minesweeper
             {
                 for (int j = 0; j < _table.GetLength(1); j++)
                 {
-                    var isBomb = Random.Shared.NextDouble() < 0.16; // random value
-                    _table[i, j] = new Field(index , isBomb);
+                    var isMine = Random.Shared.NextDouble() < 0.5; // random value // current mine rate = 50%
+                    _table[i, j] = new Field(index , isMine);
                 }
             }
 
-            GetNearbyStats();
+            //GetNearbyStats();
         }
 
         public void GetNearbyStats()
@@ -91,14 +91,14 @@ namespace minesweeper
                     }
 
                     // right
-                    isVerified = _helper.VerifyCoordinate(i - 1, j, Rows);
+                    isVerified = _helper.VerifyCoordinate(i, j +1, Rows);
                     if (isVerified)
                     {
                         right = _table[i, j + 1];
                     }
 
                     // bottom
-                    isVerified = _helper.VerifyCoordinate(i - 1, j, Rows);
+                    isVerified = _helper.VerifyCoordinate(i +1, j, Rows);
                     if (isVerified)
                     {
                         bottom = _table[i + 1, j];

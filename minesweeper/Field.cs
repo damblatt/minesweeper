@@ -22,8 +22,8 @@ namespace minesweeper
         public Field? Left => _left;
         public Field? Top => _top;
         public Field? Bottom => _bottom;
-        public int Index { get; }
 
+        public int Index { get; }
         public bool IsMine { get; }
         public bool IsRevealed { get; private set; }
         public bool IsMarked { get; private set; }
