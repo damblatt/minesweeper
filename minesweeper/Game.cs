@@ -21,9 +21,8 @@ namespace minesweeper
 
         public void Start()
         {
-            int numberOfGuesses = 0;
-            //bool isGameOver = false;
-            while (WinLose.WinOrLose < 1)
+            bool isGameOver = false;
+            while (!isGameOver)
             {
                 _grid.PrintGrid();
                 Console.WriteLine("Select a field you would like to REVEAL or MARK by entering it's coordinates. For example: 1A for the first field. ");
@@ -32,9 +31,9 @@ namespace minesweeper
                 var selectedField = _grid.GetField(coordinate);
 
                 //code von Damian für Coordinates
-                numberOfGuesses += _helper.RevealOrMark(selectedField);
+                _helper.RevealOrMark(selectedField);
 
-                WinLose.WinLoseChecker(numberOfGuesses);
+                isGameOver = WinLose.WinLoseChecker(_grid);
                //selectedField.GetRepresentation();
             }
         }

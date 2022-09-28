@@ -139,12 +139,9 @@ namespace minesweeper
         public void RevealField()
         {
             IsRevealed = true;
-
             if (IsMine)
             {
-                // Experimental
-                // field.GetRepresentation();
-                WinLose.WinOrLose = 1;
+                WinLose.IsLost = true;
             }
         }
 
@@ -154,6 +151,7 @@ namespace minesweeper
             return false;
         }
 
+        public bool IsMineAndMarkedOrRevealed() => IsMine && IsMarked || IsRevealed;
 
         //public bool UnfoldAndCheckGameOver()
         //{

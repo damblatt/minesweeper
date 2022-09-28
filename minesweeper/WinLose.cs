@@ -1,6 +1,7 @@
 ﻿using minesweeper.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,45 +10,57 @@ namespace minesweeper
 {
     internal class WinLose
     {
-        public static int WinOrLose { get; set; }
+        //public static int WinOrLose { get; set; }
+        public static bool IsLost { get; set; }
 
-        public static void WinLoseChecker(int numberOfGuesses)
+        public static bool WinLoseChecker(Grid grid)
         {
-            if (WinOrLose == 1)
+            if (IsLost)
             {
-                if (numberOfGuesses == 1)
-                {
-                    PrintSkillIssue();
-                }
-                else
-                {
-                    PrintGameOver();
-                }
+                PrintGameOver();
+                return true;
             }
-            else if (WinOrLose == 2)
+            if (grid.IsWon())
             {
-                
+                PrintVictory();
+                return true;
             }
+            return false;
+            //if (Field.IsRevealed && Field.IsMine)
+            //{
+            //    WinLose.WinOrLose = 1;
+            //}
+            //else if ()
+            //{
+
+            //}
+
+            //if (WinOrLose == 1)
+            //{
+            //    PrintGameOver();
+            //}
+            //else if (WinOrLose == 2)
+            //{
+            //    PrintVictory();
+            //}
         }
+
+        
+
         public static void PrintGameOver()
         {
             var content = File.ReadAllText("Resources/GameOverText.txt");
-
-            Console.Clear();
             var representation = Representation.Red(content);
-            representation.Print();
-            Console.WriteLine("You sadly flipped a field which contained a mine. Better Luck next time.");
-            Timer.printTimerGameOver();
+            var content = File.ReadAllText("Resources/GameOverText.txt");
+            Console.WriteLine(content);
             return;
         }
-        public static void PrintSkillIssue()
-        {
-            var content = File.ReadAllText("Resources/SkillIssue.txt");
 
+        public static void PrintVictory()
+        {
             Console.Clear();
-            var representation = Representation.Red(content);
-            representation.Print();
-            Console.WriteLine("The first field you flipped sadly contained a mine. Better Luck next time.");
+            var content = File.ReadAllText("Recources/Victory.txt");
+            Console.WriteLine(content);
             Timer.printTimerGameOver();
             return;
         }

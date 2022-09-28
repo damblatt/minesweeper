@@ -18,6 +18,7 @@ namespace minesweeper
         private readonly int _rows;
         private readonly int _columns;
         private Field[,] _table;
+        public static int MineCount;
         // Properties
         //public int Rows
         //{
@@ -40,6 +41,7 @@ namespace minesweeper
             CreateGrid();
         }
 
+        # region Methods
         // Methods
         public void CreateGrid()
         {
@@ -50,6 +52,8 @@ namespace minesweeper
                 for (int j = 0; j < _table.GetLength(1); j++)
                 {
                     var isMine = Random.Shared.NextDouble() < 0.16;
+                    if (isMine)
+                    { MineCount++;}
                     _table[i, j] = new Field(index , isMine);
                     index++;
                 }
@@ -57,6 +61,8 @@ namespace minesweeper
 
             GetNearbyStats();
         }
+
+
 
         public void GetNearbyStats()
         {
@@ -162,5 +168,29 @@ namespace minesweeper
         {
             return _table[coordiante.Y, coordiante.X];
         }
+
+        public bool IsWon()
+        {
+            return IsWonByRevealed() || IsWonByMarked();
+        }
+
+        private bool IsWonByRevealed()
+        {
+            return false;
+        }
+
+        public bool IsWonByMarked()
+        {
+            foreach (var field in _table)
+            {
+                if (!field.IsMineAndMarkedOrRevealed())
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        #endregion
     }
 }
