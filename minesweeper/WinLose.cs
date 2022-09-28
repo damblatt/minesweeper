@@ -6,18 +6,21 @@ using System.Threading.Tasks;
 
 namespace minesweeper
 {
-    internal class GameOver
+    internal class WinLose
     {
-        public static void CheckGameOver(Field field, Grid _grid)
+        public static int WinOrLose { get; set; }
+
+        public static void WinLoseChecker()
         {
-            //bool isGameOver = field.UnfoldAndCheckGameOver();
-            //if (isGameOver)
+            if (WinOrLose == 1)
             {
-                _grid.PrintGrid();
                 PrintGameOver();
             }
+            else if (WinOrLose == 2)
+            {
+                
+            }
         }
-
         public static void PrintGameOver()
         {
             Console.Clear();

@@ -59,11 +59,7 @@ namespace minesweeper
                 if (decision == "r")
                 {
                     field.RevealField();
-                    string val = field.GetRepresentation();
-                    if (val == "X")
-                    {
-                        return true;
-                    }
+                    field.GetRepresentation();
                     inputIsCorrect = true;
                 }
                 else if (decision == "m")

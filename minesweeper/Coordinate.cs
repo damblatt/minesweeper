@@ -15,7 +15,7 @@ namespace minesweeper
 
         public Coordinate MinusXMinusY() => new Coordinate(X -1, Y-1);
 
-        private static Regex _regex = new Regex("^(([a-z][1-9][1-9]?)|([1-9][1-9]?[a-z]))$");
+        private static Regex _regex = new Regex("^(([a-z][0-9][0-9]?)|([0-9][0-9]?[a-z]))$");
 
         public static (bool, Coordinate?) TryCreateCoordinate(string input, int gridSize)
         {
