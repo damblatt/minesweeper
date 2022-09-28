@@ -47,19 +47,23 @@ namespace minesweeper
             }
             return n;
         }
-        public void RevealOrMark(Field field)
+        public bool RevealOrMark(Field field)
         {
             bool inputIsCorrect = false;
             while (!inputIsCorrect)
             {
                 Console.WriteLine("What do you want to do? Enter the corresponding letter");
-                Console.WriteLine("[r] Reveal the filed\n[m] Mark/unmark the field");
+                Console.WriteLine("[r] Reveal the fiel\n[m] Mark/unmark the field");
                 string decision = Console.ReadLine();
 
                 if (decision == "r")
                 {
                     field.RevealField();
-                    field.GetRepresentation();
+                    string val = field.GetRepresentation();
+                    if (val == "X")
+                    {
+                        return true;
+                    }
                     inputIsCorrect = true;
                 }
                 else if (decision == "m")
@@ -69,6 +73,7 @@ namespace minesweeper
                     inputIsCorrect = true;
                 }
             }
+            return false;
         }
 
         public static Coordinate GetCoordinate(int gridSize)
