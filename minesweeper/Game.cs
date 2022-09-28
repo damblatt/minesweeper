@@ -31,7 +31,7 @@ namespace minesweeper
                 //code von Damian für Coordinates
                 _helper.RevealOrMark(selectedField);
                 
-                selectedField.GetRepresentation();
+               //selectedField.GetRepresentation();
             }
         }
     }
