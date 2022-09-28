@@ -61,7 +61,7 @@ namespace minesweeper
                 }
             }
 
-            GetNearbyStats();
+            //GetNearbyStats();
         }
 
         public void GetNearbyStats()
