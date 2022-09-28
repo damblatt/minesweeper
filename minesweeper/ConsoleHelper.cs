@@ -58,12 +58,15 @@ namespace minesweeper
 
                 if (decision == "r")
                 {
-                    // reveal();
+                    field.IsFieldRevealed();
+                    field.RevealField();
+                    field.GetRepresentation();
                     inputIsCorrect = true;
                 }
                 else if (decision == "m")
                 {
                     field.MarkField();
+                    field.GetRepresentation();
                     inputIsCorrect = true;
                 }
             }

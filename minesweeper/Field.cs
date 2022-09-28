@@ -58,7 +58,7 @@ namespace minesweeper
 
         public string GetRepresentation()
         {
-            // für programmierung 
+            // für manuel: hier den wert von IsMarked prüfen und dann symbol returnen
             if (!IsRevealed)
             {
                 return "#"; //
@@ -74,24 +74,9 @@ namespace minesweeper
             return default;
         }
 
-        public string MarkField()
+        public void MarkField()
         {
-            if (IsRevealed)
-            {
-                Console.WriteLine("This field is already revealed!");
-                return " ";
-            }
-            else if (!IsMarked)
-            {
-                IsMarked = true;
-                return "%";
-            }
-            else if (IsMarked)
-            {
-                IsMarked = false;
-                return "■";
-            }
-            return default;
+            IsMarked = true;
         }
         
 
