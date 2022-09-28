@@ -47,7 +47,7 @@ namespace minesweeper
             }
             return n;
         }
-        public void RevealOrMark(Field field)
+        public bool RevealOrMark(Field field)
         {
             bool inputIsCorrect = false;
             while (!inputIsCorrect)
@@ -59,7 +59,11 @@ namespace minesweeper
                 if (decision == "r")
                 {
                     field.RevealField();
-                    field.GetRepresentation();
+                    string val = field.GetRepresentation();
+                    if (val == "X")
+                    {
+                        return true;
+                    }
                     inputIsCorrect = true;
                 }
                 else if (decision == "m")
@@ -69,6 +73,7 @@ namespace minesweeper
                     inputIsCorrect = true;
                 }
             }
+            return false;
         }
 
         public static Coordinate GetCoordinate(int gridSize)
