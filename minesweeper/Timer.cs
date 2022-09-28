@@ -27,7 +27,6 @@ namespace minesweeper
         public static void printTimerGameOver()
         {
             var duration = DateTime.Now - begin;
-            Console.WriteLine($"In total you needed: {duration}");
-        }
+            Console.WriteLine($"\tIn total you needed: {duration}"); }
     }
 }
