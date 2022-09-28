@@ -93,16 +93,13 @@ namespace minesweeper
 
         public void RevealField()
         {
+            IsRevealed = true;
+
             if (IsMine)
             {
+             // Experimental
+             // field.GetRepresentation();
                 GameOver.PrintGameOver();
-            }
-            else
-            {
-                if (!IsRevealed)
-                {
-                    IsRevealed = true;
-                }
             }
         }
 
