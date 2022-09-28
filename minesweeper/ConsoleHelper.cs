@@ -53,7 +53,7 @@ namespace minesweeper
             while (!inputIsCorrect)
             {
                 Console.WriteLine("What do you want to do? Enter the corresponding letter");
-                Console.WriteLine("[r] Reveal the filed\n[m] Mark this field\n[u] Unmark");
+                Console.WriteLine("[r] Reveal the filed\n[m] Mark/unmark the field");
                 string decision = Console.ReadLine();
 
                 if (decision == "r")
