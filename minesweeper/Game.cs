@@ -29,10 +29,11 @@ namespace minesweeper
                 var selectedField = _grid.GetField(coordinate);
 
                 //code von Damian für Coordinates
-                _helper.RevealOrMark(selectedField);
+                isGameOver = _helper.RevealOrMark(selectedField);
                 
-                selectedField.GetRepresentation();
+               //selectedField.GetRepresentation();
             }
+            GameOver.PrintGameOver();
         }
     }
 }
