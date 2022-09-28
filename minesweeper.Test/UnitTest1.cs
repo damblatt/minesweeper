@@ -1,3 +1,5 @@
+using minesweeper.Model;
+
 namespace minesweeper.Test
 {
     [TestClass]

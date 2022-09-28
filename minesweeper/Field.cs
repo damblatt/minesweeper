@@ -1,10 +1,12 @@
-﻿using System;
+﻿using minesweeper.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
+using static minesweeper.Model.Representation;
 
 namespace minesweeper
 {
@@ -27,8 +29,6 @@ namespace minesweeper
         public bool IsMine { get; }
         public bool IsRevealed { get; private set; }
         public bool IsMarked { get; private set; }
-        public int MinesNearby { get; private set; }
-
 
         public Field(int index, bool isMine)
         {
@@ -92,46 +92,41 @@ namespace minesweeper
             return count;
         }
 
-        public string GetRepresentation()
+        public Representation GetRepresentation()
         {
-            if (!IsRevealed && IsMine)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                return "X";
-            }
+
+            //if (!IsRevealed && IsMine)
+            //{
+            //    return Red("X");
+            //}
+            //if (!IsRevealed && !IsMarked)
+            //{
+            //    int minesNearby = MinesArroundMe();
+            //    return $"{minesNearby}";
+            //}
+            //else if (!IsRevealed && IsMarked)
+            //{
+            //    return Yellow("#");
+            //}
+            
+            //return default;
+
             if (!IsRevealed && !IsMarked)
             {
-                int minesNearby = GetMinesNearby();
-                return $"{minesNearby}";
+                return "■";
             }
             else if (!IsRevealed && IsMarked)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                return "#";
+                return Yellow("#");
+            }
+            else if (IsRevealed && !IsMine)
+            {
+                int minesNearby = MinesArroundMe();
+                return $"{minesNearby}";
             }
             
             return default;
-
-            //if (!IsRevealed && !IsMarked)
-            //{
-            //    return "■";
-            //}
-            //else if (!IsRevealed && IsMarked)
-            //{
-            //    Console.ForegroundColor = ConsoleColor.Yellow;
-            //    return "#";
-            //}
-            //else if (IsRevealed && !IsMine)
-            //{
-            //    int minesNearby = GetMinesNearby();
-            //    return $"{minesNearby}";
-            //}
-            //else if (IsRevealed && IsMine)
-            //{
-            //    Console.ForegroundColor = ConsoleColor.Red;
-            //    return "X";
-            //}
-            //return default;
         }
 
         public void MarkField()
@@ -146,10 +141,7 @@ namespace minesweeper
             }
         }
         
-        public void SetMinesNearby(int minesNearby)
-        {
-            MinesNearby = minesNearby;
-        }
+
 
         public void RevealField()
         {
@@ -169,10 +161,6 @@ namespace minesweeper
             return false;
         }
 
-        public int GetMinesNearby()
-        {
-            return MinesNearby;
-        }
 
         //public bool UnfoldAndCheckGameOver()
         //{

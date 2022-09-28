@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using minesweeper.Model;
 
 namespace minesweeper
 {
@@ -59,14 +60,14 @@ namespace minesweeper
                 if (decision == "r")
                 {
                     field.RevealField();
-                    field.GetRepresentation();
+                    //field.GetRepresentation();
                     Console.ForegroundColor = ConsoleColor.White;
                     inputIsCorrect = true;
                 }
                 else if (decision == "m")
                 {
                     field.MarkField();
-                    field.GetRepresentation();
+                    //field.GetRepresentation();
                     Console.ForegroundColor = ConsoleColor.White;
                     inputIsCorrect = true;
                 }

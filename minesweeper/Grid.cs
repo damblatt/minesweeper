@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
+using minesweeper.Model;
 
 namespace minesweeper
 {
@@ -66,14 +67,14 @@ namespace minesweeper
                 {
                     var current = _table[i, j];
 
-                    var left = j - 1 > 0 ? _table[i, j - 1] : null;
+                    var left = j > 0 ? _table[i, j - 1] : null;
                     //bool isVerified = VerifyCoordinate(i, j - 1);
                     //if (isVerified)
                     //{
                     //    var left = _table[i, j - 1];
                     //}
 
-                    var top = i - 1 > 0 ? _table[i - 1, j] : null;
+                    var top = i > 0 ? _table[i - 1, j] : null;
                     //isVerified = VerifyCoordinate(i - 1, j);
                     //if (isVerified)
                     //{
@@ -95,8 +96,7 @@ namespace minesweeper
                     //}
 
                     _table[i, j].SetFields(left, top, right, bottom);
-                    int minesNearby = _table[i, j].MinesArroundMe();
-                    _table[i, j].SetMinesNearby(minesNearby);
+
                 }
             }
             //foreach(var field in _table)
@@ -138,8 +138,8 @@ namespace minesweeper
                 for (int y = 0; y < _table.GetLength(1); y++)
                 {
                     var field = _table[x, y];
-                    Console.Write(field.GetRepresentation());
-                    Console.ForegroundColor = ConsoleColor.White;
+                    var representation = field.GetRepresentation();
+                    representation.Print();
                     Console.Write(" | ");
                 }
                 Console.WriteLine("");
