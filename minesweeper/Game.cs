@@ -21,6 +21,7 @@ namespace minesweeper
 
         public void Start()
         {
+            int numberOfGuesses = 0;
             //bool isGameOver = false;
             while (WinLose.WinOrLose < 1)
             {
@@ -31,9 +32,9 @@ namespace minesweeper
                 var selectedField = _grid.GetField(coordinate);
 
                 //code von Damian für Coordinates
-                _helper.RevealOrMark(selectedField);
+                numberOfGuesses += _helper.RevealOrMark(selectedField);
 
-                WinLose.WinLoseChecker();
+                WinLose.WinLoseChecker(numberOfGuesses);
                //selectedField.GetRepresentation();
             }
         }

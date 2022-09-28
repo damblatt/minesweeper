@@ -48,7 +48,7 @@ namespace minesweeper
             }
             return n;
         }
-        public bool RevealOrMark(Field field)
+        public int RevealOrMark(Field field)
         {
             bool inputIsCorrect = false;
             while (!inputIsCorrect)
@@ -63,6 +63,7 @@ namespace minesweeper
                     //field.GetRepresentation();
                     Console.ForegroundColor = ConsoleColor.White;
                     inputIsCorrect = true;
+                    return 1;
                 }
                 else if (decision == "m")
                 {
@@ -72,7 +73,7 @@ namespace minesweeper
                     inputIsCorrect = true;
                 }
             }
-            return false;
+            return 0;
         }
 
         public static Coordinate GetCoordinate(int gridSize)

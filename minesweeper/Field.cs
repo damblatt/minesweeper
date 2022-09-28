@@ -12,8 +12,6 @@ namespace minesweeper
 {
     internal class Field
     {
-        private ConsoleHelper _helper;
-
         private Field? _right;
         private Field? _left;
         private Field? _top;
@@ -99,17 +97,16 @@ namespace minesweeper
             {
                 return Red("X");
             }
-            if (!IsRevealed && !IsMarked)
+            else if(!IsRevealed && IsMarked)
+            {
+                return Yellow("#");
+            }
+            else
             {
                 int minesNearby = MinesArroundMe();
                 return $"{minesNearby}";
             }
-            else if (!IsRevealed && IsMarked)
-            {
-                return Yellow("#");
-            }
-
-            return default;
+            
 
             //if (!IsRevealed && !IsMarked)
             //{
@@ -117,7 +114,6 @@ namespace minesweeper
             //}
             //else if (!IsRevealed && IsMarked)
             //{
-            //    Console.ForegroundColor = ConsoleColor.Yellow;
             //    return Yellow("#");
             //}
             //else if (IsRevealed && !IsMine)
@@ -125,8 +121,7 @@ namespace minesweeper
             //    int minesNearby = MinesArroundMe();
             //    return $"{minesNearby}";
             //}
-
-            //return default;
+            //else { return Red("X"); }
         }
 
         public void MarkField()
@@ -140,8 +135,6 @@ namespace minesweeper
                 IsMarked = false;
             }
         }
-        
-
 
         public void RevealField()
         {

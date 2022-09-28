@@ -13,7 +13,6 @@ namespace minesweeper
     internal class Grid
     {
         private ConsoleHelper _helper = new ConsoleHelper();
-        public Coordinate _neighbour;
 
         // Fields
         private readonly int _rows;
