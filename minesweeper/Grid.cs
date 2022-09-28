@@ -51,6 +51,7 @@ namespace minesweeper
                 {
                     var isMine = Random.Shared.NextDouble() < 0.16;
                     _table[i, j] = new Field(index , isMine);
+                    index++;
                 }
             }
 
@@ -59,52 +60,51 @@ namespace minesweeper
 
         public void GetNearbyStats()
         {
-            Field? left = null;
-            Field? top = null;
-            Field? right = null;
-            Field? bottom = null;
             for (int i = 0; i < _table.GetLength(0); i++)
             {
                 for (int j = 0; j < _table.GetLength(1); j++)
                 {
                     var current = _table[i, j];
 
-                    // left
-                    bool isVerified = VerifyCoordinate(i, j - 1);
-                    if (isVerified)
-                    {
-                        left = _table[i, j - 1];
-                    }
+                    var left = j - 1 > 0 ? _table[i, j - 1] : null;
+                    //bool isVerified = VerifyCoordinate(i, j - 1);
+                    //if (isVerified)
+                    //{
+                    //    var left = _table[i, j - 1];
+                    //}
 
-                    // top
-                    isVerified = VerifyCoordinate(i - 1, j);
-                    if (isVerified)
-                    {
-                        top = _table[i -1, j];
-                    }
+                    var top = i - 1 > 0 ? _table[i - 1, j] : null;
+                    //isVerified = VerifyCoordinate(i - 1, j);
+                    //if (isVerified)
+                    //{
+                    //    top = _table[i -1, j];
+                    //}
 
-                    // right
-                    isVerified = VerifyCoordinate(i, j +1);
-                    if (isVerified)
-                    {
-                        right = _table[i, j + 1];
-                    }
+                    var right = j +1 == _table.GetLength(0) ? null : _table[i, j +1];
+                    //isVerified = VerifyCoordinate(i, j +1);
+                    //if (isVerified)
+                    //{
+                    //    right = _table[i, j + 1];
+                    //}
 
-                    // bottom
-                    isVerified = VerifyCoordinate(i +1, j);
-                    if (isVerified)
-                    {
-                        bottom = _table[i + 1, j];
-                    }
+                    var bottom = i +1 == _table.GetLength(1) ? null : _table[i +1, j];
+                    //isVerified = VerifyCoordinate(i +1, j);
+                    //if (isVerified)
+                    //{
+                    //    bottom = _table[i + 1, j];
+                    //}
 
+                    _table[i, j].SetFields(left, top, right, bottom);
+                    int minesNearby = _table[i, j].MinesArroundMe();
+                    _table[i, j].SetMinesNearby(minesNearby);
                 }
             }
-            foreach(var field in _table)
-            {
-                field.SetFields(left, top, right, bottom);
-                int minesNearby = field.MinesArroundMe();
-                field.SetMinesNearby(minesNearby);
-            }
+            //foreach(var field in _table)
+            //{
+            //    field.SetFields(left, top, right, bottom);
+            //    int minesNearby = field.MinesArroundMe();
+            //    field.SetMinesNearby(minesNearby);
+            //}
         }
 
         private bool VerifyCoordinate(int y, int x)
@@ -138,7 +138,9 @@ namespace minesweeper
                 for (int y = 0; y < _table.GetLength(1); y++)
                 {
                     var field = _table[x, y];
-                    Console.Write(field.GetRepresentation() + " | ");
+                    Console.Write(field.GetRepresentation());
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write(" | ");
                 }
                 Console.WriteLine("");
                 Console.Write("     -");

@@ -6,6 +6,7 @@ namespace minesweeper
     {
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.White;
             Introduction.IntroMenu();
 
             var game = new Game();

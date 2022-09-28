@@ -94,25 +94,44 @@ namespace minesweeper
 
         public string GetRepresentation()
         {
-            // für manuel: hier den wert von IsMarked prüfen und dann symbol returnen
-            
+            if (!IsRevealed && IsMine)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                return "X";
+            }
             if (!IsRevealed && !IsMarked)
             {
-                return "■";
+                int minesNearby = GetMinesNearby();
+                return $"{minesNearby}";
             }
             else if (!IsRevealed && IsMarked)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 return "#";
             }
-            else if (IsRevealed && !IsMine)
-            {
-                return " ";
-            }
-            else if (IsRevealed && IsMine)
-            {
-                return "X";
-            }
+            
             return default;
+
+            //if (!IsRevealed && !IsMarked)
+            //{
+            //    return "■";
+            //}
+            //else if (!IsRevealed && IsMarked)
+            //{
+            //    Console.ForegroundColor = ConsoleColor.Yellow;
+            //    return "#";
+            //}
+            //else if (IsRevealed && !IsMine)
+            //{
+            //    int minesNearby = GetMinesNearby();
+            //    return $"{minesNearby}";
+            //}
+            //else if (IsRevealed && IsMine)
+            //{
+            //    Console.ForegroundColor = ConsoleColor.Red;
+            //    return "X";
+            //}
+            //return default;
         }
 
         public void MarkField()
@@ -150,9 +169,9 @@ namespace minesweeper
             return false;
         }
 
-        public void PrintNearbyMines()
+        public int GetMinesNearby()
         {
-            Console.WriteLine(MinesNearby);
+            return MinesNearby;
         }
 
         //public bool UnfoldAndCheckGameOver()

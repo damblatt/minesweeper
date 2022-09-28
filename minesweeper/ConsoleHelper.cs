@@ -60,12 +60,14 @@ namespace minesweeper
                 {
                     field.RevealField();
                     field.GetRepresentation();
+                    Console.ForegroundColor = ConsoleColor.White;
                     inputIsCorrect = true;
                 }
                 else if (decision == "m")
                 {
                     field.MarkField();
                     field.GetRepresentation();
+                    Console.ForegroundColor = ConsoleColor.White;
                     inputIsCorrect = true;
                 }
             }

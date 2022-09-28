@@ -24,8 +24,10 @@ namespace minesweeper
         public static void PrintGameOver()
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
             var content = File.ReadAllText("Resources/GameOverText.txt");
             Console.WriteLine(content);
+            Console.ForegroundColor = ConsoleColor.White;
             Timer.printTimerGameOver();
             return;
         }
