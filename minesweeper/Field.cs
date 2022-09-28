@@ -27,6 +27,7 @@ namespace minesweeper
         public bool IsMine { get; }
         public bool IsRevealed { get; private set; }
         public bool IsMarked { get; private set; }
+        public int MinesNearby { get; private set; }
 
 
         public Field(int index, bool isMine)
@@ -49,6 +50,21 @@ namespace minesweeper
             int count = 0;
 
             if ((_left?.IsMine) ?? false)
+            {
+                count++;
+            }
+
+            if ((_top?.IsMine) ?? false)
+            {
+                count++;
+            }
+
+            if ((_right?.IsMine) ?? false)
+            {
+                count++;
+            }
+
+            if ((_bottom?.IsMine) ?? false)
             {
                 count++;
             }
@@ -79,6 +95,10 @@ namespace minesweeper
             IsMarked = true;
         }
         
+        public void SetMinesNearby(int minesNearby)
+        {
+            MinesNearby = minesNearby;
+        }
 
         public void RevealField()
         {
@@ -110,26 +130,26 @@ namespace minesweeper
             return 0;
         }
 
-        public bool UnfoldAndCheckGameOver()
-        {
-            if (IsRevealed)
-            {
-                return false;
-            }
-            IsRevealed = true;
+        //public bool UnfoldAndCheckGameOver()
+        //{
+        //    if (IsRevealed)
+        //    {
+        //        return false;
+        //    }
+        //    IsRevealed = true;
 
-            _top?._left?.UnfoldAndCheckGameOver();
-            _top?.UnfoldAndCheckGameOver();
-            _top?._right?.UnfoldAndCheckGameOver();
+        //    _top?._left?.UnfoldAndCheckGameOver();
+        //    _top?.UnfoldAndCheckGameOver();
+        //    _top?._right?.UnfoldAndCheckGameOver();
 
-            _left?.UnfoldAndCheckGameOver();
-            _right?.UnfoldAndCheckGameOver();
+        //    _left?.UnfoldAndCheckGameOver();
+        //    _right?.UnfoldAndCheckGameOver();
 
-            _bottom?._left?.UnfoldAndCheckGameOver();
-            _bottom?.UnfoldAndCheckGameOver();
-            _bottom?._right?.UnfoldAndCheckGameOver();
+        //    _bottom?._left?.UnfoldAndCheckGameOver();
+        //    _bottom?.UnfoldAndCheckGameOver();
+        //    _bottom?._right?.UnfoldAndCheckGameOver();
 
-            return IsMine;
-        }
+        //    return IsMine;
+        //}
     }
 }
