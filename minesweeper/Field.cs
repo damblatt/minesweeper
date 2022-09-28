@@ -61,7 +61,7 @@ namespace minesweeper
             // für programmierung 
             if (!IsRevealed)
             {
-                return "■";
+                return "#"; //
             }
             else if (IsRevealed && !IsMine)
             {

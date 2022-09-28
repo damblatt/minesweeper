@@ -10,8 +10,8 @@ namespace minesweeper
     {
         public static void CheckGameOver(Field field, Grid _grid)
         {
-            bool isGameOver = field.UnfoldAndCheckGameOver();
-            if (isGameOver)
+            //bool isGameOver = field.UnfoldAndCheckGameOver();
+            //if (isGameOver)
             {
                 _grid.PrintGrid();
                 PrintGameOver();
