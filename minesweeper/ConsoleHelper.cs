@@ -90,13 +90,6 @@ namespace minesweeper
             return coordinate;
         }
 
-        public bool VerifyCoordinate(int y, int x, int gridSize)
-        {
-            if (y < 0 || y > gridSize || x < 0 | x > gridSize)
-            {
-                return false;
-            }
-            return true;
-        }
+
     }
 }

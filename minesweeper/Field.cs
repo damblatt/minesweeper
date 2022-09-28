@@ -49,23 +49,51 @@ namespace minesweeper
         {
             int count = 0;
 
-            if ((_left?.IsMine) ?? false)
+            if ((_top?._left?.IsMine) ?? false)
             {
+                Console.WriteLine("Mine top left");
                 count++;
             }
 
             if ((_top?.IsMine) ?? false)
             {
+                Console.WriteLine("Mine top");
+                count++;
+            }
+
+            if ((_top?._right?.IsMine) ?? false)
+            {
+                Console.WriteLine("Mine top right");
                 count++;
             }
 
             if ((_right?.IsMine) ?? false)
             {
+                Console.WriteLine("Mine right");
+                count++;
+            }
+
+            if ((_bottom?._right?.IsMine) ?? false)
+            {
+                Console.WriteLine("Mine bottom right");
                 count++;
             }
 
             if ((_bottom?.IsMine) ?? false)
             {
+                Console.WriteLine("Mine bottom");
+                count++;
+            }
+
+            if ((_bottom?._left?.IsMine) ?? false)
+            {
+                Console.WriteLine("Mine bottom left");
+                count++;
+            }
+
+            if ((_left?.IsMine) ?? false)
+            {
+                Console.WriteLine("Mine left");
                 count++;
             }
 
@@ -75,18 +103,22 @@ namespace minesweeper
         public string GetRepresentation()
         {
             // für manuel: hier den wert von IsMarked prüfen und dann symbol returnen
+            if (!IsMine)
+            {
+                return " ";
+            }
+            else if (IsMine)
+            {
+                return "X";
+            }
             if (!IsRevealed && !IsMarked)
             {
                 return "■";
             }
-            else if (IsRevealed && !IsMine)
-            {
-                return " ";
-            }
-            else if (IsRevealed && IsMine)
-            {
-                return "X";
-            }
+            //else if (IsRevealed && !IsMine)
+            //{
+            //    return " ";
+            //}
             else if (!IsRevealed && IsMarked)
             {
                 return "#";
@@ -129,13 +161,9 @@ namespace minesweeper
             return false;
         }
 
-        public int MineCounter()
+        public void PrintNearbyMines()
         {
-            if (IsMine)
-            {
-                return 1;
-            }
-            return 0;
+            Console.WriteLine(MinesNearby);
         }
 
         //public bool UnfoldAndCheckGameOver()

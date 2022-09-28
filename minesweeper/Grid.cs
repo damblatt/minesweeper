@@ -15,100 +15,102 @@ namespace minesweeper
         public Coordinate _neighbour;
 
         // Fields
-        private int rows;
-        int columns;
+        private readonly int _rows;
+        private readonly int _columns;
         private Field[,] _table;
         // Properties
-        public int Rows
-        {
-            get { return rows; }
-            set
-            {
-                if (value > 26 || value < 8)
-                {
-                    rows = 8;
-                }
-                else { rows = value; }
-            }
-        }
-        public int Columns
-        {
-            get { return rows; }
-            set { columns = Rows; }
-        }
+        //public int Rows
+        //{
+        //    get { return rows; }
+        //    set;
+        //}
+        //public int Columns
+        //{
+        //    get { return rows; }
+        //    set { columns = Rows; }
+        //}
 
         public Field[,] Table { get; set; }
 
         // Constructor
         public Grid(int rows)
         {
-            this.Rows = rows;
-            this.Columns = rows;
+            _rows = rows;
+            _columns = rows;
             CreateGrid();
         }
 
         // Methods
         public void CreateGrid()
         {
-            _table = new Field[Rows, Columns];
+            _table = new Field[_rows, _columns];
             int index = 0;
             for (int i = 0; i < _table.GetLength(0); i++)
             {
                 for (int j = 0; j < _table.GetLength(1); j++)
                 {
-                    var isMine = Random.Shared.NextDouble() < 0.5; // random value // current mine rate = 50%
+                    var isMine = Random.Shared.NextDouble() < 1; // random value // current mine rate = 50%
                     _table[i, j] = new Field(index , isMine);
                 }
             }
 
-            //GetNearbyStats();
+            GetNearbyStats();
         }
 
         public void GetNearbyStats()
         {
+            Field? left = null;
+            Field? top = null;
+            Field? right = null;
+            Field? bottom = null;
             for (int i = 0; i < _table.GetLength(0); i++)
             {
                 for (int j = 0; j < _table.GetLength(1); j++)
                 {
                     var current = _table[i, j];
-                    Field? left = null;
-                    Field? top = null;
-                    Field? right = null;
-                    Field? bottom = null;
 
                     // left
-                    bool isVerified = _helper.VerifyCoordinate(i, j - 1, Rows);
+                    bool isVerified = VerifyCoordinate(i, j - 1);
                     if (isVerified)
                     {
                         left = _table[i, j - 1];
                     }
 
                     // top
-                    isVerified = _helper.VerifyCoordinate(i - 1, j, Rows);
+                    isVerified = VerifyCoordinate(i - 1, j);
                     if (isVerified)
                     {
                         top = _table[i -1, j];
                     }
 
                     // right
-                    isVerified = _helper.VerifyCoordinate(i, j +1, Rows);
+                    isVerified = VerifyCoordinate(i, j +1);
                     if (isVerified)
                     {
                         right = _table[i, j + 1];
                     }
 
                     // bottom
-                    isVerified = _helper.VerifyCoordinate(i +1, j, Rows);
+                    isVerified = VerifyCoordinate(i +1, j);
                     if (isVerified)
                     {
                         bottom = _table[i + 1, j];
                     }
 
-                    current.SetFields(left, top, right, bottom);
-                    int minesNearby = current.MinesArroundMe();
-                    current.SetMinesNearby(minesNearby);
                 }
             }
+            foreach(var field in _table)
+            {
+                field.SetFields(left, top, right, bottom);
+                int minesNearby = field.MinesArroundMe();
+                field.SetMinesNearby(minesNearby);
+            }
+        }
+
+        private bool VerifyCoordinate(int y, int x)
+        {
+            return !(y < 0 || y >= _rows || x < 0 || x >= _columns);
+
         }
 
         public void PrintGrid()

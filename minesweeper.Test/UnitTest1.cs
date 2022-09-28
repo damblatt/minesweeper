@@ -8,7 +8,7 @@ namespace minesweeper.Test
         {
             var input = "A12";
 
-            var (isCreated, coordinate) = Coordinate.TryCreateCoordiate(input, 16);
+            var (isCreated, coordinate) = Coordinate.TryCreateCoordinate(input, 16);
 
             Assert.IsTrue(isCreated);
             Assert.AreEqual(0, coordinate.X);
@@ -21,7 +21,7 @@ namespace minesweeper.Test
         {
             var input = "a12";
 
-            var (isCreated, coordinate) = Coordinate.TryCreateCoordiate(input, 16);
+            var (isCreated, coordinate) = Coordinate.TryCreateCoordinate(input, 16);
 
             Assert.IsTrue(isCreated);
             Assert.AreEqual(0, coordinate.X);
@@ -34,7 +34,7 @@ namespace minesweeper.Test
         {
             var input = "E7";
 
-            var (isCreated, coordinate) = Coordinate.TryCreateCoordiate(input, 16);
+            var (isCreated, coordinate) = Coordinate.TryCreateCoordinate(input, 16);
 
             Assert.IsTrue(isCreated);
             Assert.AreEqual(4, coordinate.X);
@@ -46,7 +46,7 @@ namespace minesweeper.Test
         {
             var input = "7E";
 
-            var (isCreated, coordinate) = Coordinate.TryCreateCoordiate(input, 16);
+            var (isCreated, coordinate) = Coordinate.TryCreateCoordinate(input, 16);
 
             Assert.IsTrue(isCreated);
             Assert.AreEqual(4, coordinate.X);
@@ -59,7 +59,7 @@ namespace minesweeper.Test
         {
             var input = "AB2";
 
-            var (isCreated, coordinate) = Coordinate.TryCreateCoordiate(input, 16);
+            var (isCreated, coordinate) = Coordinate.TryCreateCoordinate(input, 16);
             Assert.IsFalse(isCreated);
 
         }
@@ -69,7 +69,7 @@ namespace minesweeper.Test
         {
             var input = "h56bb";
 
-            var (isCreated, coordinate) = Coordinate.TryCreateCoordiate(input, 16);
+            var (isCreated, coordinate) = Coordinate.TryCreateCoordinate(input, 16);
             Assert.IsFalse(isCreated);
 
         }
@@ -79,7 +79,7 @@ namespace minesweeper.Test
         {
             var input = "123";
 
-            var (isCreated, coordinate) = Coordinate.TryCreateCoordiate(input, 16);
+            var (isCreated, coordinate) = Coordinate.TryCreateCoordinate(input, 16);
             Assert.IsFalse(isCreated);
 
         }
@@ -90,7 +90,7 @@ namespace minesweeper.Test
         {
             var input = "asdfdfas";
 
-            var (isCreated, coordinate) = Coordinate.TryCreateCoordiate(input, 16);
+            var (isCreated, coordinate) = Coordinate.TryCreateCoordinate(input, 16);
 
             Assert.IsFalse(isCreated);
         }
