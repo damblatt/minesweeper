@@ -23,6 +23,7 @@ namespace minesweeper
             Console.Clear();
             var content = File.ReadAllText("Resources/GameOverText.txt");
             Console.WriteLine(content);
+            Timer.printTimerGameOver();
             return;
         }
     }
