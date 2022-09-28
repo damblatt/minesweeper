@@ -31,11 +31,8 @@ namespace minesweeper
                 //code von Damian für Coordinates
                 _helper.RevealOrMark(selectedField);
                 
-                selectedField.IsFieldRevealed();
-                selectedField.RevealField();
                 selectedField.GetRepresentation();
             }
-            
         }
     }
 }
