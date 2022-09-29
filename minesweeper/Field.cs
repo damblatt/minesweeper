@@ -90,37 +90,39 @@ namespace minesweeper
             return count;
         }
 
+        public bool IsInvalidMarked => (IsMine && !IsMarked) || (!IsMine && IsMarked);
+
         public Representation GetRepresentation()
         {
-
-            if (!IsRevealed && IsMine)
-            {
-                return Red("X");
-            }
-            else if (!IsRevealed && IsMarked)
-            {
-                return Yellow("#");
-            }
-            else
-            {
-                int minesNearby = MinesArroundMe();
-                return $"{minesNearby}";
-            }
-
-            //if (!IsRevealed && !IsMarked)
+            // //cheat mode
+            //if (!IsRevealed && IsMine)
             //{
-            //    return "■";
+            //    return Red("X");
             //}
             //else if (!IsRevealed && IsMarked)
             //{
             //    return Yellow("#");
             //}
-            //else if (IsRevealed && !IsMine)
+            //else
             //{
             //    int minesNearby = MinesArroundMe();
             //    return $"{minesNearby}";
             //}
-            //else { return Red("X"); }
+
+            if (!IsRevealed && !IsMarked)
+            {
+                return "■";
+            }
+            else if (!IsRevealed && IsMarked)
+            {
+                return Yellow("#");
+            }
+            else if (IsRevealed && !IsMine)
+            {
+                int minesNearby = MinesArroundMe();
+                return $"{minesNearby}";
+            }
+            else { return Red("X"); }
         }
 
         public void MarkField()
@@ -196,29 +198,5 @@ namespace minesweeper
                 Left.RevealField();
             }
         }
-
-        public bool IsMineAndMarkedOrRevealed() => IsMine && IsMarked || IsRevealed;
-
-        //public bool UnfoldAndCheckGameOver()
-        //{
-        //    if (IsRevealed)
-        //    {
-        //        return false;
-        //    }
-        //    IsRevealed = true;
-
-        //    _top?._left?.UnfoldAndCheckGameOver();
-        //    _top?.UnfoldAndCheckGameOver();
-        //    _top?._right?.UnfoldAndCheckGameOver();
-
-        //    _left?.UnfoldAndCheckGameOver();
-        //    _right?.UnfoldAndCheckGameOver();
-
-        //    _bottom?._left?.UnfoldAndCheckGameOver();
-        //    _bottom?.UnfoldAndCheckGameOver();
-        //    _bottom?._right?.UnfoldAndCheckGameOver();
-
-        //    return IsMine;
-        //}
     }
 }

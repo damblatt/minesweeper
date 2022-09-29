@@ -15,7 +15,7 @@ namespace minesweeper
         public Game()
         {
             _helper = new ConsoleHelper();
-            _size = _helper.ReadIntMax(3, 27);
+            _size = _helper.ReadIntMax(8, 27);
             _grid = new Grid(_size);
         }
 

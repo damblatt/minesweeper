@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using minesweeper.Model;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
-using System.Runtime.ExceptionServices;
-using System.Text;
-using System.Threading.Tasks;
-using minesweeper.Model;
 
 namespace minesweeper
 {
@@ -51,7 +44,7 @@ namespace minesweeper
             {
                 for (int j = 0; j < _table.GetLength(1); j++)
                 {
-                    var isMine = Random.Shared.NextDouble() < 0.1;
+                    var isMine = Random.Shared.NextDouble() < 0.16;
                     if (isMine)
                     { MineCount++;}
                     _table[i, j] = new Field(index , isMine);
@@ -141,14 +134,9 @@ namespace minesweeper
 
         private bool IsWonByRevealed()
         {
-            return false;
-        }
-
-        public bool IsWonByMarked()
-        {
             foreach (var field in _table)
             {
-                if (!field.IsMineAndMarkedOrRevealed())
+                if (!field.IsMine && !field.IsRevealed)
                 {
                     return false;
                 }
@@ -156,49 +144,17 @@ namespace minesweeper
             return true;
         }
 
-        public static void FlipNearbyFields(Field field)
+        public bool IsWonByMarked()
         {
-            if (field.Top.Left != null)
+            foreach (var field in _table)
             {
-                field.Top.Left.RevealField();
+                if (field.IsInvalidMarked)
+                {
+                    return false;
+                }
             }
-
-            if (field.Top != null)
-            {
-                field.Top.RevealField();
-            }
-
-            if (field.Top.Right != null)
-            {
-                field.Top.Right.RevealField();
-            }
-
-            if (field.Right != null)
-            {
-                field.Right.RevealField();
-            }
-
-            if (field.Bottom.Right != null)
-            {
-                field.Bottom.Right.RevealField();
-            }
-
-            if (field.Bottom != null)
-            {
-                field.Bottom.RevealField();
-            }
-
-            if (field.Bottom.Left != null)
-            {
-                field.Bottom.Left.RevealField();
-            }
-
-            if (field.Left != null)
-            {
-                field.Left.RevealField();
-            }
+            return true;
         }
-
         #endregion
     }
 }
