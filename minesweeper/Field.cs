@@ -93,35 +93,34 @@ namespace minesweeper
         public Representation GetRepresentation()
         {
 
-            if (!IsRevealed && IsMine)
-            {
-                return Red("X");
-            }
-            else if(!IsRevealed && IsMarked)
-            {
-                return Yellow("#");
-            }
-            else
-            {
-                int minesNearby = MinesArroundMe();
-                return $"{minesNearby}";
-            }
-            
-
-            //if (!IsRevealed && !IsMarked)
+            //if (!IsRevealed && IsMine)
             //{
-            //    return "■";
+            //    return Red("X");
             //}
-            //else if (!IsRevealed && IsMarked)
+            //else if(!IsRevealed && IsMarked)
             //{
             //    return Yellow("#");
             //}
-            //else if (IsRevealed && !IsMine)
+            //else
             //{
             //    int minesNearby = MinesArroundMe();
             //    return $"{minesNearby}";
             //}
-            //else { return Red("X"); }
+
+            if (!IsRevealed && !IsMarked)
+            {
+                return "■";
+            }
+            else if (!IsRevealed && IsMarked)
+            {
+                return Yellow("#");
+            }
+            else if (IsRevealed && !IsMine)
+            {
+                int minesNearby = MinesArroundMe();
+                return $"{minesNearby}";
+            }
+            else { return Red("X"); }
         }
 
         public void MarkField()
@@ -143,12 +142,59 @@ namespace minesweeper
             {
                 WinLose.IsLost = true;
             }
+            if (MinesArroundMe() == 0)
+            {
+                FlipNearbyFields();
+            }
         }
 
-        public bool IsFieldRevealed()
+        public void FlipNearbyFields()
         {
-            if (IsRevealed) { return true; }
-            return false;
+            if (Top != null)
+            {
+                if (Top.Left != null && Top.Left.IsRevealed == false)
+                {
+                    Top.Left.RevealField();
+                }
+
+                if (Top.IsRevealed == false)
+                {
+                    Top.RevealField();
+                }
+
+                if (Top.Right != null && Top.Right.IsRevealed == false)
+                {
+                    Top.Right.RevealField();
+                }
+            }
+
+            if (Right != null && Right.IsRevealed == false)
+            {
+                Right.RevealField();
+            }
+
+            if (Bottom != null)
+            {
+                if (Bottom.Right != null && Bottom.Right.IsRevealed == false)
+                {
+                    Bottom.Right.RevealField();
+                }
+
+                if (Bottom.IsRevealed == false)
+                {
+                    Bottom.RevealField();
+                }
+
+                if (Bottom.Left != null && Bottom.Left.IsRevealed == false)
+                {
+                    Bottom.Left.RevealField();
+                }
+            }
+
+            if (Left != null && Left.IsRevealed == false)
+            {
+                Left.RevealField();
+            }
         }
 
         public bool IsMineAndMarkedOrRevealed() => IsMine && IsMarked || IsRevealed;

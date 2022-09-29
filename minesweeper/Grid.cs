@@ -51,7 +51,7 @@ namespace minesweeper
             {
                 for (int j = 0; j < _table.GetLength(1); j++)
                 {
-                    var isMine = Random.Shared.NextDouble() < 0.16;
+                    var isMine = Random.Shared.NextDouble() < 0.1;
                     if (isMine)
                     { MineCount++;}
                     _table[i, j] = new Field(index , isMine);
@@ -62,8 +62,6 @@ namespace minesweeper
             GetNearbyStats();
         }
 
-
-
         public void GetNearbyStats()
         {
             for (int i = 0; i < _table.GetLength(0); i++)
@@ -73,49 +71,16 @@ namespace minesweeper
                     var current = _table[i, j];
 
                     var left = j > 0 ? _table[i, j - 1] : null;
-                    //bool isVerified = VerifyCoordinate(i, j - 1);
-                    //if (isVerified)
-                    //{
-                    //    var left = _table[i, j - 1];
-                    //}
 
                     var top = i > 0 ? _table[i - 1, j] : null;
-                    //isVerified = VerifyCoordinate(i - 1, j);
-                    //if (isVerified)
-                    //{
-                    //    top = _table[i -1, j];
-                    //}
 
                     var right = j +1 == _table.GetLength(0) ? null : _table[i, j +1];
-                    //isVerified = VerifyCoordinate(i, j +1);
-                    //if (isVerified)
-                    //{
-                    //    right = _table[i, j + 1];
-                    //}
-
+                    
                     var bottom = i +1 == _table.GetLength(1) ? null : _table[i +1, j];
-                    //isVerified = VerifyCoordinate(i +1, j);
-                    //if (isVerified)
-                    //{
-                    //    bottom = _table[i + 1, j];
-                    //}
-
+                    
                     _table[i, j].SetFields(left, top, right, bottom);
-
                 }
             }
-            //foreach(var field in _table)
-            //{
-            //    field.SetFields(left, top, right, bottom);
-            //    int minesNearby = field.MinesArroundMe();
-            //    field.SetMinesNearby(minesNearby);
-            //}
-        }
-
-        private bool VerifyCoordinate(int y, int x)
-        {
-            return !(y < 0 || y >= _rows || x < 0 || x >= _columns);
-
         }
 
         public void PrintGrid()
@@ -189,6 +154,49 @@ namespace minesweeper
                 }
             }
             return true;
+        }
+
+        public static void FlipNearbyFields(Field field)
+        {
+            if (field.Top.Left != null)
+            {
+                field.Top.Left.RevealField();
+            }
+
+            if (field.Top != null)
+            {
+                field.Top.RevealField();
+            }
+
+            if (field.Top.Right != null)
+            {
+                field.Top.Right.RevealField();
+            }
+
+            if (field.Right != null)
+            {
+                field.Right.RevealField();
+            }
+
+            if (field.Bottom.Right != null)
+            {
+                field.Bottom.Right.RevealField();
+            }
+
+            if (field.Bottom != null)
+            {
+                field.Bottom.RevealField();
+            }
+
+            if (field.Bottom.Left != null)
+            {
+                field.Bottom.Left.RevealField();
+            }
+
+            if (field.Left != null)
+            {
+                field.Left.RevealField();
+            }
         }
 
         #endregion

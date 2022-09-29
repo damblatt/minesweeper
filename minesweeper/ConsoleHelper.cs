@@ -91,6 +91,9 @@ namespace minesweeper
             return coordinate;
         }
 
-
+        public bool IsFieldNull(Field field)
+        {
+            return (field == null);
+        }
     }
 }

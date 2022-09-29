@@ -59,9 +59,11 @@ namespace minesweeper
 
         public static void PrintVictory()
         {
+            var content = File.ReadAllText("Resources/Victory.txt");
+            
             Console.Clear();
-            var content = File.ReadAllText("Recources/Victory.txt");
-            Console.WriteLine(content);
+            var representation = Representation.Green(content);
+            representation.Print();
             Timer.printTimerGameOver();
             return;
         }
