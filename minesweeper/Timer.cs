@@ -22,11 +22,12 @@ namespace minesweeper
         public static void printTimer()
         {
             var duration = DateTime.Now - begin;
-            Console.WriteLine($"Time needed until the start of this turn: {duration}");
+            Console.WriteLine($"Time needed until the start of this turn: {duration.ToString("mm")} minutes {duration.ToString("ss")} seconds");
         }
         public static void printTimerGameOver()
         {
             var duration = DateTime.Now - begin;
-            Console.WriteLine($"\tIn total you needed: {duration}"); }
+            Console.WriteLine($"\tIn total you needed: {duration.ToString("mm")} minutes {duration.ToString("ss")} seconds");
+        }
     }
 }
