@@ -93,34 +93,34 @@ namespace minesweeper
         public Representation GetRepresentation()
         {
 
-            //if (!IsRevealed && IsMine)
-            //{
-            //    return Red("X");
-            //}
-            //else if(!IsRevealed && IsMarked)
-            //{
-            //    return Yellow("#");
-            //}
-            //else
-            //{
-            //    int minesNearby = MinesArroundMe();
-            //    return $"{minesNearby}";
-            //}
-
-            if (!IsRevealed && !IsMarked)
+            if (!IsRevealed && IsMine)
             {
-                return "■";
+                return Red("X");
             }
             else if (!IsRevealed && IsMarked)
             {
                 return Yellow("#");
             }
-            else if (IsRevealed && !IsMine)
+            else
             {
                 int minesNearby = MinesArroundMe();
                 return $"{minesNearby}";
             }
-            else { return Red("X"); }
+
+            //if (!IsRevealed && !IsMarked)
+            //{
+            //    return "■";
+            //}
+            //else if (!IsRevealed && IsMarked)
+            //{
+            //    return Yellow("#");
+            //}
+            //else if (IsRevealed && !IsMine)
+            //{
+            //    int minesNearby = MinesArroundMe();
+            //    return $"{minesNearby}";
+            //}
+            //else { return Red("X"); }
         }
 
         public void MarkField()
