@@ -98,12 +98,16 @@ namespace minesweeper
             for (int x = 0; x < _table.GetLength(0); x++)
             {
                 Console.Write("  " + (x +1).ToString("00") + " | ");
+
                 for (int y = 0; y < _table.GetLength(1); y++)
                 {
                     var field = _table[x, y];
                     var representation = field.GetRepresentation();
                     representation.Print();
                     Console.Write(" | ");
+                    double waiting = ((3000 / _table.GetLength(0)) - 70) / _table.GetLength(0);
+                    int waitingTime = Convert.ToInt32(waiting);
+                    System.Threading.Thread.Sleep(waitingTime);
                 }
                 Console.WriteLine("");
                 Console.Write("     -");
@@ -112,6 +116,7 @@ namespace minesweeper
                     Console.Write("----");
                 }
                 Console.WriteLine("");
+                System.Threading.Thread.Sleep(70);
             }
             if (Timer.timerIsRunning)
             {
@@ -120,6 +125,8 @@ namespace minesweeper
             {
                 Timer.timerStarter();
             }
+
+
         }
 
         internal Field GetField(Coordinate coordiante)

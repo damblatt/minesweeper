@@ -115,12 +115,17 @@ namespace minesweeper
             }
             else if (!IsRevealed && IsMarked)
             {
-                return Yellow("#");
+                return Magenta("#");
             }
             else if (IsRevealed && !IsMine)
             {
                 int minesNearby = MinesArroundMe();
-                return $"{minesNearby}";
+                if (minesNearby == 0) { return " "; }
+                else if (minesNearby == 1) { return Blue($"{minesNearby}"); }
+                else if (minesNearby == 2) { return Green($"{minesNearby}"); }
+                else if (minesNearby == 3) { return Yellow($"{minesNearby}"); }
+                else if (minesNearby == 4) { return Orange($"{minesNearby}"); }
+                else { return Red($"{minesNearby}"); }
             }
             else { return Red("X"); }
         }

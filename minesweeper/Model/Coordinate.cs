@@ -50,9 +50,13 @@ namespace minesweeper.Model
                 num = input[1..];
             }
 
-            int x = chr - 'a';
             int y = int.Parse(num) - 1;
+            int x = chr - 'a';
             if (y > gridSize || y < 0)
+            {
+                return (false, null);
+            }
+            if (x > gridSize || x < 0)
             {
                 return (false, null);
             }
