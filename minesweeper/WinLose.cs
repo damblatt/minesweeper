@@ -13,46 +13,47 @@ namespace minesweeper
         //public static int WinOrLose { get; set; }
         public static bool IsLost { get; set; }
 
-        public static bool WinLoseChecker(Grid grid)
+        public static bool WinLoseChecker(Grid grid, int amountOfGuesses)
         {
-            if (IsLost)
+            if (IsLost && amountOfGuesses == 1)
+            {
+                PrintSkillIssue();
+                return true;
+            }
+            else if (IsLost)
             {
                 PrintGameOver();
                 return true;
-            }
+            }    
             if (grid.IsWon())
             {
                 PrintVictory();
                 return true;
             }
             return false;
-            //if (Field.IsRevealed && Field.IsMine)
-            //{
-            //    WinLose.WinOrLose = 1;
-            //}
-            //else if ()
-            //{
-
-            //}
-
-            //if (WinOrLose == 1)
-            //{
-            //    PrintGameOver();
-            //}
-            //else if (WinOrLose == 2)
-            //{
-            //    PrintVictory();
-            //}
         }
-
-        
 
         public static void PrintGameOver()
         {
             var content = File.ReadAllText("Resources/GameOverText.txt");
+
+            Console.Clear();
             var representation = Representation.Red(content);
-            var content = File.ReadAllText("Resources/GameOverText.txt");
-            Console.WriteLine(content);
+            representation.Print();
+            Console.WriteLine("\tYou sadly flipped a field which contained a mine. Better Luck next time.");
+            Timer.printTimerGameOver();
+            return;
+        }
+
+        public static void PrintSkillIssue()
+        {
+            var content = File.ReadAllText("Resources/SkillIssue.txt");
+
+            Console.Clear();
+            var representation = Representation.Red(content);
+            representation.Print();
+            Console.WriteLine("\tThe first field you flipped sadly contained a mine. Better Luck next time.");
+            Timer.printTimerGameOver();
             return;
         }
 

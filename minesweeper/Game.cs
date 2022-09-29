@@ -22,6 +22,7 @@ namespace minesweeper
         public void Start()
         {
             bool isGameOver = false;
+            int amountOfGuesses = 0;
             while (!isGameOver)
             {
                 _grid.PrintGrid();
@@ -30,11 +31,9 @@ namespace minesweeper
                 var coordinate = ConsoleHelper.GetCoordinate(_size);
                 var selectedField = _grid.GetField(coordinate);
 
-                //code von Damian für Coordinates
-                _helper.RevealOrMark(selectedField);
+                amountOfGuesses += _helper.RevealOrMark(selectedField);
 
-                isGameOver = WinLose.WinLoseChecker(_grid);
-               //selectedField.GetRepresentation();
+                isGameOver = WinLose.WinLoseChecker(_grid, amountOfGuesses);
             }
         }
     }
