@@ -8,29 +8,15 @@ namespace minesweeper
         private ConsoleHelper _helper = new ConsoleHelper();
 
         // Fields
-        private readonly int _rows;
-        private readonly int _columns;
+        private readonly int _side;
         private Field[,] _table;
         public static int MineCount;
         // Properties
-        //public int Rows
-        //{
-        //    get { return rows; }
-        //    set;
-        //}
-        //public int Columns
-        //{
-        //    get { return rows; }
-        //    set { columns = Rows; }
-        //}
-
-        public Field[,] Table { get; set; }
 
         // Constructor
         public Grid(int rows)
         {
-            _rows = rows;
-            _columns = rows;
+            _side = rows;
             CreateGrid();
         }
 
@@ -38,7 +24,7 @@ namespace minesweeper
         // Methods
         public void CreateGrid()
         {
-            _table = new Field[_rows, _columns];
+            _table = new Field[_side, _side];
             int index = 0;
             for (int i = 0; i < _table.GetLength(0); i++)
             {
