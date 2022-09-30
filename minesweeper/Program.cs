@@ -24,9 +24,7 @@ namespace minesweeper
                 Introduction.IntroMenu();
                 WinLose.IsLost = false;
                 var game = new Game();
-                game.Start();
-
-                Console.ReadLine();
+                game.Loop();
             }
         }
     }

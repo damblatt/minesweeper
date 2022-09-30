@@ -21,9 +21,9 @@ namespace minesweeper
 
         public void PrintContent()
         {
-            string Start = "[s] Start";
-            string HowToPlay ="[h] How to play";
-            string Exit = "[e] Exit";
+            string Start = "[S] Start";
+            string HowToPlay ="[H] How to play";
+            string Exit = "[ESC] Exit";
             Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (Start.Length / 2)) + "}", Start));
             Console.WriteLine(" ");
             Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (HowToPlay.Length / 2)) + "}", HowToPlay));
@@ -41,18 +41,18 @@ namespace minesweeper
 
         public void ReadLine()
         {
-            string input = Console.ReadLine().ToLower();
-            if (input == "s")
+            var key = Console.ReadKey();
+            if (key.Key == ConsoleKey.S)
             {
                 Console.Clear();
                 GameIsRunning = true;
             }
-            else if (input == "h")
+            else if (key.Key == ConsoleKey.H)
             {
                 HowToPlay();
                 PrintStartScreen();
             }
-            else if (input == "e")
+            else if (key.Key == ConsoleKey.Escape)
             {
                 Console.Clear();
                 GameIsRunning = false;

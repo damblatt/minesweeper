@@ -14,7 +14,7 @@ namespace minesweeper
             _grid = new Grid(_size);
         }
 
-        public void Start()
+        public void Loop()
         {
             bool isFirstGuess = true;
             bool isGameOver = false;

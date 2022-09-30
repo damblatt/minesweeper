@@ -37,20 +37,21 @@ namespace minesweeper
             {
                 Console.WriteLine("What do you want to do? Enter the corresponding letter");
                 Console.WriteLine("[r] Reveal the fiel\n[m] Mark/unmark the field\n[c] Change field");
-                string decision = Console.ReadLine();
+                var input = Console.ReadKey();
 
-                if (decision == "r")
+
+                if (input.Key == ConsoleKey.R)
                 {
                     field.RevealField();
                     inputIsCorrect = true;
                     return 1;
                 }
-                else if (decision == "m")
+                else if (input.Key == ConsoleKey.M)
                 {
                     field.MarkField();
                     inputIsCorrect = true;
                 }
-                else if (decision == "c")
+                else if (input.Key == ConsoleKey.C)
                 {
                     inputIsCorrect = true;
                 }
