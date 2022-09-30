@@ -24,15 +24,16 @@ namespace minesweeper
             bool isFirstGuess = true;
             bool isGameOver = false;
             int amountOfGuesses = 0;
+            Timer timer = new Timer();
             while (!isGameOver)
             {
                 if (isFirstGuess)
                 {
-                    _grid.SlowPrintGrid();
+                    timer = _grid.SlowPrintGrid();
                     isFirstGuess = false;
                 } else
                 {
-                    _grid.PrintGrid();
+                    _grid.PrintGrid(timer);
                 }
                 Console.WriteLine("Select a field you would like to REVEAL or MARK by entering it's coordinates. For example: 1A for the first field. ");
 
@@ -41,7 +42,7 @@ namespace minesweeper
 
                 amountOfGuesses += _helper.RevealOrMark(selectedField);
 
-                isGameOver = WinLose.WinLoseChecker(_grid, amountOfGuesses);
+                isGameOver = WinLose.WinLoseChecker(_grid, amountOfGuesses, timer);
             }
         }
     }

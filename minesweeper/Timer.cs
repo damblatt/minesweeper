@@ -8,18 +8,17 @@ namespace minesweeper
 {
     internal class Timer
     {
-        private static DateTime begin;
+        private DateTime begin;
 
-        public static bool timerIsRunning { get; set; }
+        public bool timerIsRunning { get; set; }
 
-
-        public static void timerStarter()
+        public void StartTimer()
         {
             begin = DateTime.Now;
             timerIsRunning = true;
         }
 
-        public static void printTimer()
+        public void PrintTimer()
         {
             var duration = DateTime.Now - begin;
             if (duration.ToString("mm") == "00")
@@ -31,7 +30,7 @@ namespace minesweeper
                 Console.WriteLine($"Time needed until the start of this turn: {duration.ToString("mm")} minutes {duration.ToString("ss")} seconds");
             }
         }
-        public static void printTimerGameOver()
+        public void PrintTimerGameOver()
         {
             var duration = DateTime.Now - begin;
             if (duration.ToString("mm") == "00")

@@ -13,27 +13,27 @@ namespace minesweeper
     {
         public static bool IsLost { get; set; }
 
-        public static bool WinLoseChecker(Grid grid, int amountOfGuesses)
+        public static bool WinLoseChecker(Grid grid, int amountOfGuesses, Timer timer)
         {
             if (IsLost && amountOfGuesses == 1)
             {
-                PrintSkillIssue();
+                PrintSkillIssue(timer);
                 return true;
             }
             else if (IsLost)
             {
-                PrintGameOver();
+                PrintGameOver(timer);
                 return true;
             }
             if (grid.IsWon())
             {
-                PrintVictory();
+                PrintVictory(timer);
                 return true;
             }
             return false;
         }
 
-        public static void PrintGameOver()
+        public static void PrintGameOver(Timer timer)
         {
             var content = File.ReadAllText("Resources/GameOverText.txt");
 
@@ -42,13 +42,13 @@ namespace minesweeper
             var representation = Representation.Red(content);
             representation.Print();
             Console.WriteLine("\tYou sadly flipped a field which contained a mine. Better Luck next time.");
-            Timer.printTimerGameOver();
+            timer.PrintTimerGameOver();
             Console.WriteLine("\n\n\nPress any key to get back to the main menu."); 
             Console.ReadKey();
             Program.Game();
         }
 
-        public static void PrintSkillIssue()
+        public static void PrintSkillIssue(Timer timer)
         {
             var content = File.ReadAllText("Resources/SkillIssue.txt");
 
@@ -57,7 +57,7 @@ namespace minesweeper
             var representation = Representation.Red(content);
             representation.Print();
             Console.WriteLine("\tThe first field you flipped sadly contained a mine. Better Luck next time.");
-            Timer.printTimerGameOver();
+            timer.PrintTimerGameOver();
             Console.WriteLine("\n\n\nPress any key to get back to the main menu.");
             Console.ReadKey();
             Program.Game();
@@ -69,7 +69,7 @@ namespace minesweeper
             gameOver.Play();
         }
 
-        public static void PrintVictory()
+        public static void PrintVictory(Timer timer)
         {
             var content = File.ReadAllText("Resources/Victory.txt");
 
@@ -78,7 +78,7 @@ namespace minesweeper
             victory.Play();
             var representation = Representation.Green(content);
             representation.Print();
-            Timer.printTimerGameOver();
+            timer.PrintTimerGameOver();
             Console.WriteLine("\n\n\nPress any key to get back to the main menu.");
             Console.ReadKey();
             Program.Game();

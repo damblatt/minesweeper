@@ -61,7 +61,7 @@ namespace minesweeper
                 }
             }
         }
-        public void SlowPrintGrid()
+        public Timer SlowPrintGrid()
         {
             Console.Clear();
             Console.WriteLine();
@@ -103,17 +103,12 @@ namespace minesweeper
                 Console.WriteLine("");
                 System.Threading.Thread.Sleep(70);
             }
-            if (Timer.timerIsRunning)
-            {
-                Timer.printTimer();
-            }
-            else
-            {
-                Timer.timerStarter();
-            }
+            Timer timer = new Timer();
+            timer.StartTimer();
+            return timer;
         }
 
-        public void PrintGrid()
+        public void PrintGrid(Timer timer)
         {
             Console.Clear();
             Console.WriteLine();
@@ -151,12 +146,12 @@ namespace minesweeper
                 }
                 Console.WriteLine("");
             }
-            if (Timer.timerIsRunning)
+            if (timer.timerIsRunning)
             {
-                Timer.printTimer();
+                timer.PrintTimer();
             } else
             {
-                Timer.timerStarter();
+                timer.StartTimer();
             }
         }
 
