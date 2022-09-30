@@ -86,40 +86,40 @@ namespace minesweeper
 
         public Representation GetRepresentation()
         {
-            //cheat mode
-            if (!IsRevealed && IsMine)
-            {
-                return Red("X");
-            }
-            else if (!IsRevealed && IsMarked)
-            {
-                return Yellow("#");
-            }
-            else
-            {
-                int minesNearby = MinesArroundMe();
-                return $"{minesNearby}";
-            }
-
-            //if (!IsRevealed && !IsMarked)
+            ////cheat mode
+            //if (!IsRevealed && IsMine)
             //{
-            //    return "■";
+            //    return Red("X");
             //}
             //else if (!IsRevealed && IsMarked)
             //{
-            //    return Magenta("#");
+            //    return Yellow("#");
             //}
-            //else if (IsRevealed && !IsMine)
+            //else
             //{
             //    int minesNearby = MinesArroundMe();
-            //    if (minesNearby == 0) { return " "; }
-            //    else if (minesNearby == 1) { return Blue($"{minesNearby}"); }
-            //    else if (minesNearby == 2) { return Green($"{minesNearby}"); }
-            //    else if (minesNearby == 3) { return Yellow($"{minesNearby}"); }
-            //    else if (minesNearby == 4) { return Orange($"{minesNearby}"); }
-            //    else { return Red($"{minesNearby}"); }
+            //    return $"{minesNearby}";
             //}
-            //else { return Red("X"); }
+
+            if (!IsRevealed && !IsMarked)
+            {
+                return "■";
+            }
+            else if (!IsRevealed && IsMarked)
+            {
+                return Magenta("#");
+            }
+            else if (IsRevealed && !IsMine)
+            {
+                int minesNearby = MinesArroundMe();
+                if (minesNearby == 0) { return " "; }
+                else if (minesNearby == 1) { return Blue($"{minesNearby}"); }
+                else if (minesNearby == 2) { return Green($"{minesNearby}"); }
+                else if (minesNearby == 3) { return Yellow($"{minesNearby}"); }
+                else if (minesNearby == 4) { return Orange($"{minesNearby}"); }
+                else { return Red($"{minesNearby}"); }
+            }
+            else { return Red("X"); }
         }
 
         public void MarkField()
