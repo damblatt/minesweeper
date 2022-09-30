@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace minesweeper
 {
@@ -6,13 +7,22 @@ namespace minesweeper
     {
         static void Main(string[] args)
         {
-            Console.Title = "Minesweeper";
-            Console.ForegroundColor = ConsoleColor.White;
-            Introduction.IntroMenu();
-            var game = new Game();
-            game.Start();
+            Game();
+        }
 
-            Console.ReadLine();
+        public static void Game()
+        {
+            Console.Title = "Minesweeper";
+            var startScreen = new StartScreen();
+            startScreen.PrintStartScreen();
+            if (StartScreen.GameIsRunning)
+            {
+                Introduction.IntroMenu();
+                var game = new Game();
+                game.Start();
+
+                Console.ReadLine();
+            }
         }
     }
 }
