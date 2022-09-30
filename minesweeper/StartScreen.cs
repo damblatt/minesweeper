@@ -44,8 +44,6 @@ namespace minesweeper
             string input = Console.ReadLine().ToLower();
             if (input == "s")
             {
-                SoundPlayer intro = new SoundPlayer("Resources/gameStart.wav");
-                intro.Play();
                 Console.Clear();
                 GameIsRunning = true;
             }
