@@ -1,4 +1,5 @@
-﻿using System.Media;
+﻿using System.Runtime.CompilerServices;
+using System.Media;
 using System.Text;
 
 namespace minesweeper
@@ -7,15 +8,24 @@ namespace minesweeper
     {
         static void Main(string[] args)
         {
+            Game();
+        }
+
+        public static void Game()
+        {
             SoundPlayer intro = new SoundPlayer("Resources/gameStart.wav");
             intro.Play();
             Console.Title = "Minesweeper";
-            Console.ForegroundColor = ConsoleColor.White;
-            Introduction.IntroMenu();
-            var game = new Game();
-            game.Start();
+            var startScreen = new StartScreen();
+            startScreen.PrintStartScreen();
+            if (StartScreen.GameIsRunning)
+            {
+                Introduction.IntroMenu();
+                var game = new Game();
+                game.Start();
 
-            Console.ReadLine();
+                Console.ReadLine();
+            }
         }
     }
 }

@@ -43,7 +43,9 @@ namespace minesweeper
             representation.Print();
             Console.WriteLine("\tYou sadly flipped a field which contained a mine. Better Luck next time.");
             Timer.printTimerGameOver();
-            return;
+            Console.WriteLine("\n\n\nPress any key to get back to the main menu."); 
+            Console.ReadKey();
+            Program.Game();
         }
 
         public static void PrintSkillIssue()
@@ -56,7 +58,9 @@ namespace minesweeper
             representation.Print();
             Console.WriteLine("\tThe first field you flipped sadly contained a mine. Better Luck next time.");
             Timer.printTimerGameOver();
-            return;
+            Console.WriteLine("\n\n\nPress any key to get back to the main menu.");
+            Console.ReadKey();
+            Program.Game();
         }
 
         private static void PlayGameOver()
@@ -75,7 +79,9 @@ namespace minesweeper
             var representation = Representation.Green(content);
             representation.Print();
             Timer.printTimerGameOver();
-            return;
+            Console.WriteLine("\n\n\nPress any key to get back to the main menu.");
+            Console.ReadKey();
+            Program.Game();
         }
     }
 }
