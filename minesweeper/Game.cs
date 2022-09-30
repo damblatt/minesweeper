@@ -21,11 +21,19 @@ namespace minesweeper
 
         public void Start()
         {
+            bool isFirstGuess = true;
             bool isGameOver = false;
             int amountOfGuesses = 0;
             while (!isGameOver)
             {
-                _grid.PrintGrid();
+                if (isFirstGuess)
+                {
+                    _grid.SlowPrintGrid();
+                    isFirstGuess = false;
+                } else
+                {
+                    _grid.PrintGrid();
+                }
                 Console.WriteLine("Select a field you would like to REVEAL or MARK by entering it's coordinates. For example: 1A for the first field. ");
 
                 var coordinate = ConsoleHelper.GetCoordinate(_size);

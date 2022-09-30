@@ -22,7 +22,6 @@ namespace minesweeper
         public static void printTimer()
         {
             var duration = DateTime.Now - begin;
-            Console.WriteLine($"Time needed until the start of this turn: {duration.ToString("mm")} minutes {duration.ToString("ss")} seconds");
             if (duration.ToString("mm") == "00")
             {
                 Console.WriteLine($"Time needed until the start of this turn: {duration.ToString("ss")} seconds");
@@ -35,7 +34,6 @@ namespace minesweeper
         public static void printTimerGameOver()
         {
             var duration = DateTime.Now - begin;
-            Console.WriteLine($"\tIn total you needed: {duration.ToString("mm")} minutes {duration.ToString("ss")} seconds");
             if (duration.ToString("mm") == "00")
             {
                 Console.WriteLine($"\tIn total you needed: {duration.ToString("ss")} seconds");
