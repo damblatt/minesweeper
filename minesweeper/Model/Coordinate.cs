@@ -23,6 +23,7 @@ namespace minesweeper.Model
             // 2 or 3 characters
             if (input.Length < 2 || input.Length > 3)
             {
+                Console.Write("This field does not exist. Enter a valid coordinate: ");
                 return (false, null);
             }
 
@@ -30,6 +31,7 @@ namespace minesweeper.Model
             var isMatch = _regex.Match(input);
             if (!isMatch.Success)
             {
+                Console.Write("This field does not exist. Enter a valid coordinate: ");
                 return (false, null);
             }
 
@@ -52,12 +54,14 @@ namespace minesweeper.Model
 
             int y = int.Parse(num) - 1;
             int x = chr - 'a';
-            if (y > gridSize || y < 0)
+            if (y >= gridSize || y < 0)
             {
+                Console.Write("This field does not exist. Enter a valid coordinate: ");
                 return (false, null);
             }
-            if (x > gridSize || x < 0)
+            if (x >= gridSize || x < 0)
             {
+                Console.Write("This field does not exist. Enter a valid coordinate: ");
                 return (false, null);
             }
             else
