@@ -53,15 +53,19 @@ namespace minesweeper
                 Console.Clear();
                 GameIsRunning = true;
             }
-            if (input == "h")
+            else if (input == "h")
             {
                 HowToPlay();
                 PrintStartScreen();
             }
-            if (input == "e")
+            else if (input == "e")
             {
                 Console.Clear();
                 GameIsRunning = false;
+            }
+            else
+            {
+                PrintStartScreen();
             }
         }
     }
