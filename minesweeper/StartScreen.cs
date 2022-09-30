@@ -1,11 +1,4 @@
-﻿using minesweeper.Model;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Media;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Media;
 
 namespace minesweeper
 {
@@ -25,6 +18,7 @@ namespace minesweeper
             Console.Clear();
             Console.WriteLine(content);
         }
+
         public void PrintContent()
         {
             string Start = "[s] Start";
@@ -36,6 +30,7 @@ namespace minesweeper
             Console.WriteLine(" ");
             Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (Exit.Length / 2)) + "}", Exit));
         }
+
         public void HowToPlay()
         {
             Console.Clear();
@@ -43,6 +38,7 @@ namespace minesweeper
             Console.WriteLine("\n\n\n\n\n\n\n\nPress any key to get back to the main menu.");
             Console.ReadKey();
         }
+
         public void ReadLine()
         {
             string input = Console.ReadLine().ToLower();

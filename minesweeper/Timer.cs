@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace minesweeper
 {
     internal class Timer
@@ -30,6 +25,7 @@ namespace minesweeper
                 Console.WriteLine($"Time needed until the start of this turn: {duration.ToString("mm")} minutes {duration.ToString("ss")} seconds");
             }
         }
+
         public void PrintTimerGameOver()
         {
             var duration = DateTime.Now - begin;

@@ -1,11 +1,4 @@
 ﻿using minesweeper.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
 using static minesweeper.Model.Representation;
 
 namespace minesweeper
@@ -17,7 +10,6 @@ namespace minesweeper
         private Field? _top;
         private Field? _bottom;
 
-        // Properties
         public Field? Right => _right;
         public Field? Left => _left;
         public Field? Top => _top;
@@ -94,7 +86,7 @@ namespace minesweeper
 
         public Representation GetRepresentation()
         {
-            // //cheat mode
+            ////cheat mode
             //if (!IsRevealed && IsMine)
             //{
             //    return Red("X");

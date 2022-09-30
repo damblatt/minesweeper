@@ -1,19 +1,13 @@
 ﻿using minesweeper.Model;
-using System.Linq;
 
 namespace minesweeper
 {
     internal class Grid
     {
-        private ConsoleHelper _helper = new ConsoleHelper();
-
-        // Fields
         private readonly int _side;
         private Field[,] _table;
-        public static int MineCount;
-        // Properties
+        private static int _mineCount;
 
-        // Constructor
         public Grid(int rows)
         {
             _side = rows;
@@ -21,7 +15,6 @@ namespace minesweeper
         }
 
         # region Methods
-        // Methods
         public void CreateGrid()
         {
             _table = new Field[_side, _side];
@@ -32,7 +25,7 @@ namespace minesweeper
                 {
                     var isMine = Random.Shared.NextDouble() < 0.16;
                     if (isMine)
-                    { MineCount++;}
+                    { _mineCount++;}
                     _table[i, j] = new Field(index , isMine);
                     index++;
                 }
@@ -61,6 +54,7 @@ namespace minesweeper
                 }
             }
         }
+
         public Timer SlowPrintGrid()
         {
             Console.Clear();

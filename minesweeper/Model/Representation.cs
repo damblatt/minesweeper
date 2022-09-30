@@ -2,7 +2,6 @@
 {
     internal class Representation
     {
-
         public string Content { get; }
 
         public Color Color { get; }

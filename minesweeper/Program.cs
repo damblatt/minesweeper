@@ -1,7 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Media;
-using System.Text;
-
+﻿
 namespace minesweeper
 {
     internal class Program

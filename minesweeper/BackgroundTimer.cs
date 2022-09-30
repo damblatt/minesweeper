@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace minesweeper
 {
     internal class BackgroundTimer
@@ -17,7 +12,6 @@ namespace minesweeper
             this.action = action;
         }
 
-
         public async Task Start()
         {
             while(await _timer.WaitForNextTickAsync())
@@ -25,6 +19,5 @@ namespace minesweeper
                 action();
             }
         }
-
     }
 }

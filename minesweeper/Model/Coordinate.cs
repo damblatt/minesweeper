@@ -4,6 +4,8 @@ namespace minesweeper.Model
 {
     public class Coordinate
     {
+        private static Regex _regex = new Regex("^(([a-z][0-9][0-9]?)|([0-9][0-9]?[a-z]))$");
+
         public int Y { get; }
         public int X { get; }
 
@@ -13,21 +15,15 @@ namespace minesweeper.Model
             X = x;
         }
 
-        public Coordinate MinusXMinusY() => new Coordinate(X - 1, Y - 1);
-
-        private static Regex _regex = new Regex("^(([a-z][0-9][0-9]?)|([0-9][0-9]?[a-z]))$");
-
         public static (bool, Coordinate?) TryCreateCoordinate(string input, int gridSize)
         {
             input = input.Trim().ToLower(); // Trim() cuts white-space interactors off
-            // 2 or 3 characters
             if (input.Length < 2 || input.Length > 3)
             {
                 Console.Write("This field does not exist. Enter a valid coordinate: ");
                 return (false, null);
             }
 
-            // regex match?
             var isMatch = _regex.Match(input);
             if (!isMatch.Success)
             {
