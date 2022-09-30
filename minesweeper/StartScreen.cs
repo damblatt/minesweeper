@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -45,15 +46,17 @@ namespace minesweeper
         public void ReadLine()
         {
             string input = Console.ReadLine().ToLower();
+            if (input == "s")
+            {
+                SoundPlayer intro = new SoundPlayer("Resources/gameStart.wav");
+                intro.Play();
+                Console.Clear();
+                GameIsRunning = true;
+            }
             if (input == "h")
             {
                 HowToPlay();
                 PrintStartScreen();
-            }
-            if (input == "s")
-            {
-                Console.Clear();
-                GameIsRunning = true;
             }
             if (input == "e")
             {
