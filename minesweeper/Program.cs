@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Media;
+using System.Text;
 
 namespace minesweeper
 {
@@ -6,6 +7,8 @@ namespace minesweeper
     {
         static void Main(string[] args)
         {
+            SoundPlayer intro = new SoundPlayer("Resources/gameStart.wav");
+            intro.Play();
             Console.Title = "Minesweeper";
             Console.ForegroundColor = ConsoleColor.White;
             Introduction.IntroMenu();
