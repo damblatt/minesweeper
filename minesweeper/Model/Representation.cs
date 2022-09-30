@@ -52,6 +52,6 @@
         Yellow,
         Orange,
         Magenta,
-        Red,
+        Red
     }
 }
