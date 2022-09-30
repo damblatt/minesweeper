@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,7 +11,6 @@ namespace minesweeper
 {
     internal class WinLose
     {
-        //public static int WinOrLose { get; set; }
         public static bool IsLost { get; set; }
 
         public static bool WinLoseChecker(Grid grid, int amountOfGuesses)
@@ -24,7 +24,7 @@ namespace minesweeper
             {
                 PrintGameOver();
                 return true;
-            }    
+            }
             if (grid.IsWon())
             {
                 PrintVictory();
@@ -38,6 +38,7 @@ namespace minesweeper
             var content = File.ReadAllText("Resources/GameOverText.txt");
 
             Console.Clear();
+            PlayGameOver();
             var representation = Representation.Red(content);
             representation.Print();
             Console.WriteLine("\tYou sadly flipped a field which contained a mine. Better Luck next time.");
@@ -50,6 +51,7 @@ namespace minesweeper
             var content = File.ReadAllText("Resources/SkillIssue.txt");
 
             Console.Clear();
+            PlayGameOver();
             var representation = Representation.Red(content);
             representation.Print();
             Console.WriteLine("\tThe first field you flipped sadly contained a mine. Better Luck next time.");
@@ -57,11 +59,19 @@ namespace minesweeper
             return;
         }
 
+        private static void PlayGameOver()
+        {
+            SoundPlayer gameOver = new SoundPlayer("Resources/gameOver.wav");
+            gameOver.Play();
+        }
+
         public static void PrintVictory()
         {
             var content = File.ReadAllText("Resources/Victory.txt");
-            
+
             Console.Clear();
+            SoundPlayer victory = new SoundPlayer("Resources/victory.wav");
+            victory.Play();
             var representation = Representation.Green(content);
             representation.Print();
             Timer.printTimerGameOver();
